@@ -109,7 +109,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link {{ activeClass('admin.kelas.*') }}" href="{{ route('admin.kelas.index') }}">
+                    <a class="menu-link {{ activeClass('guru.kelas.*') }}" href="{{ route('guru.kelas.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/General/Star.svg-->

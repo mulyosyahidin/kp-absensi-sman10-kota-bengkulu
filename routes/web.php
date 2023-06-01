@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PelajaranController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
+use App\Http\Controllers\Guru\KelasController as GuruKelasController;
 use App\Http\Controllers\Guru\PelajaranController as GuruPelajaranController;
 
 /*
@@ -65,6 +66,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [GuruDashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('pelajaran', GuruPelajaranController::class)->only(['index', 'show']);
+        Route::resource('kelas', GuruKelasController::class)->only(['index', 'show']);
     });
 });
 
