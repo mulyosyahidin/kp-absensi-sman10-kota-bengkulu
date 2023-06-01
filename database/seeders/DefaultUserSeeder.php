@@ -12,8 +12,6 @@ class DefaultUserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::truncate();
-
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'username' => 'admin',

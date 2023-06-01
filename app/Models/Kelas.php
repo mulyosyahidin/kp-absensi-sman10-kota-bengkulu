@@ -52,6 +52,11 @@ class Kelas extends Model
         return $this->hasMany(Wali_kelas::class, 'id_kelas');
     }
 
+    /**
+     * Siswa data associated with the kelas.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function siswa()
     {
         return $this->hasMany(Kelas_siswa::class, 'id_kelas');

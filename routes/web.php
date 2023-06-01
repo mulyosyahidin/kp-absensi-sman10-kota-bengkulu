@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PelajaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/siswa/{siswa}/kelas', [SiswaController::class, 'kelas'])->name('siswa.kelas.select');
         Route::put('/siswa/{siswa}/kelas', [SiswaController::class, 'updateKelas'])->name('siswa.kelas.update');
         Route::resource('siswa', SiswaController::class);
+
+        Route::resource('pelajaran', PelajaranController::class);
     });
 });
 

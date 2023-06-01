@@ -184,7 +184,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="nip" value="{{ old('nip') }}"
-                                                    class="form-control @error('nip') is-invalid @enderror" required>
+                                                    class="form-control @error('nip') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('nip')
@@ -205,7 +205,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="nuptk" value="{{ old('nuptk') }}"
-                                                    class="form-control @error('nuptk') is-invalid @enderror" required>
+                                                    class="form-control @error('nuptk') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('nuptk')
@@ -229,8 +229,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}"
-                                                    class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                                    required>
+                                                    class="form-control @error('tempat_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('tempat_lahir')
@@ -252,8 +251,7 @@
                                                 <!--begin::Input-->
                                                 <input type="date" name="tanggal_lahir"
                                                     value="{{ old('tanggal_lahir') }}"
-                                                    class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                                    required>
+                                                    class="form-control @error('tanggal_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('tanggal_lahir')
