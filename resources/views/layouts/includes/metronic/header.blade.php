@@ -24,8 +24,8 @@
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="{{ route('home') }}" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('assets/images/icon.png') }}"
-                    class="h-30px" style="border-radius: 50%;" />
+                <img alt="Logo" src="{{ asset('assets/images/icon.png') }}" class="h-30px"
+                    style="border-radius: 50%;" />
             </a>
         </div>
         <!--end::Mobile logo-->
@@ -38,7 +38,18 @@
                 data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true"
                 data-kt-swapper-mode="{default: 'append', lg: 'prepend'}"
                 data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
-
+                <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
+                    id="kt_app_header_menu" data-kt-menu="true">
+                    <!--begin:Menu item-->
+                    <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                        <!--begin:Menu link-->
+                        <span class="menu-link">
+                            <span class="menu-title">{{ tahunAjaranAktif() }}</span>
+                        </span>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                </div>
             </div>
             <!--end::Menu wrapper-->
             <!--begin::Navbar-->
@@ -219,15 +230,15 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo"
-                                        src="{{ getAvatar(auth()->user()->name) }}" />
+                                    <img alt="Logo" src="{{ getAvatar(auth()->user()->name) }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
                                     <div class="fw-bold d-flex align-items-center fs-5">{{ auth()->user()->name }}
                                     </div>
-                                    <span class="fw-semibold text-muted text-primary fs-7">{{ auth()->user()->role }}</span>
+                                    <span
+                                        class="fw-semibold text-muted text-primary fs-7">{{ auth()->user()->role }}</span>
                                 </div>
                                 <!--end::Username-->
                             </div>

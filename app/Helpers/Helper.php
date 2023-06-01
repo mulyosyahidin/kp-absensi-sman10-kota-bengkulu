@@ -49,3 +49,21 @@ if (!function_exists('getAvatar')) {
         return $url;
     }
 }
+
+if (!function_exists('tahunAjaranAktif')) {
+    function tahunAjaranAktif()
+    {
+        $data = \App\Models\Tahun_ajaran::where('aktif', 1)->first();
+
+        if ($data) {
+            $ta = $data->tahun_ajaran;
+            $ta .= ' (';
+            $ta .= $data->semester == 1 ? 'Ganjil' : 'Genap';
+            $ta .= ')';
+
+            return $ta;
+        }
+
+        return 'Tidak ada tahun ajaran aktif';
+    }
+}

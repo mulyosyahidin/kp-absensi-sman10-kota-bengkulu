@@ -151,6 +151,16 @@ License: For each use you must have a valid license purchased only from above li
         </script>
     @endif
 
+    @if (session()->has('info'))
+        <script>
+            Swal.fire(
+                'Perhatian!',
+                `{{ session()->get('info') }}`,
+                'info'
+            );
+        </script>
+    @endif
+
     @if (session()->has('error'))
         <script>
             Swal.fire(

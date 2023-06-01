@@ -1,5 +1,5 @@
 @extends('layouts.metronic')
-@section('title', $kela->nama)
+@section('title', $siswa->nama)
 
 @section('content')
     <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ $kela->nama }}</h1>
+                        {{ $siswa->nama }}</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -28,7 +28,7 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.kelas.index') }}" class="text-muted text-hover-primary">Kelas</a>
+                            <a href="{{ route('admin.siswa.index') }}" class="text-muted text-hover-primary">Siswa</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -37,7 +37,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">{{ $kela->nama }}</li>
+                        <li class="breadcrumb-item text-muted">{{ $siswa->nama }}</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -46,7 +46,7 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
-                    <a href="{{ route('admin.kelas.index') }}" class="btn btn-sm fw-bold btn-primary">
+                    <a href="{{ route('admin.siswa.index') }}" class="btn btn-sm fw-bold btn-primary">
                         Kembali
                     </a>
                     <!--end::Primary button-->
@@ -70,7 +70,7 @@
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title m-0">
-                                    <h3 class="fw-bold m-0">{{ $kela->nama }}</h3>
+                                    <h3 class="fw-bold m-0">{{ $siswa->nama }}</h3>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -83,37 +83,61 @@
                                         <tr>
                                             <td>ID</td>
                                             <td>
-                                                <strong>{{ $kela->id }}</strong>
+                                                <strong>{{ $siswa->id }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Wali Kelas</td>
+                                            <td>Kelas</td>
                                             <td>
-                                                <strong>{{ $kela->waliKelas->where('aktif', true)->first()->guru->nama ?? '' }}</strong>
+                                                <strong>{{ $siswa->kelas()->where('aktif', 1)->first()->nama ?? '' }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Nama</td>
                                             <td>
-                                                <strong>{{ $kela->nama }}</strong>
+                                                <strong>{{ $siswa->nama }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tingkat</td>
+                                            <td>NIS</td>
                                             <td>
-                                                <strong>{{ $kela->tingkat }}</strong>
+                                                <strong>{{ $siswa->nis }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Jurusan</td>
+                                            <td>NISN</td>
                                             <td>
-                                                <strong>{{ $kela->jurusan->nama }}</strong>
+                                                <strong>{{ $siswa->nisn }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Jumlah Siswa</td>
+                                            <td>Agama</td>
                                             <td>
-                                                <strong>{{ $kela->siswa->where('id_tahun_ajaran', $tahunAjaranAktif->id)->count() }}</strong>
+                                                <strong>{{ $siswa->agama }}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jenis Kelamin</td>
+                                            <td>
+                                                <strong>{{ $siswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tempat Lahir</td>
+                                            <td>
+                                                <strong>{{ $siswa->tempat_lahir }}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal Lahir</td>
+                                            <td>
+                                                <strong>{{ $siswa->tanggal_lahir->translatedFormat('l, d M Y') }}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alamat</td>
+                                            <td>
+                                                <strong>{{ $siswa->alamat }}</strong>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -122,11 +146,11 @@
                             <!--end: Card Body-->
                             <!--begin::Footer-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9 gap-2">
-                                <a href="{{ route('admin.kelas.wali-kelas.select', $kela) }}" class="btn btn-sm btn-info">
-                                    <i class="fa fa-user"></i>
-                                    Wali Kelas
+                                <a href="{{ route('admin.siswa.kelas.select', $siswa) }}" class="btn btn-sm btn-info">
+                                    <i class="fa fa-list"></i>
+                                    Kelas
                                 </a>
-                                <a href="{{ route('admin.kelas.edit', $kela) }}" class="btn btn-sm btn-warning">
+                                <a href="{{ route('admin.siswa.edit', $siswa) }}" class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i>
                                     Edit
                                 </a>
@@ -145,7 +169,7 @@
                             <div class="card-header pt-7">
                                 <!--begin::Title-->
                                 <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label fw-bold text-gray-800">Riwayat Wali Kelas</span>
+                                    <span class="card-label fw-bold text-gray-800">Kelas</span>
                                 </h3>
                                 <!--end::Title-->
                             </div>
@@ -160,20 +184,19 @@
                                         <thead>
                                             <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
                                                 <th>#</th>
-                                                <th>Nama</th>
+                                                <th>Kelas</th>
                                                 <th>Tahun Ajaran</th>
                                                 <th>Semester</th>
                                                 <th>Status</th>
-                                                <th></th>
                                             </tr>
                                         </thead>
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
-                                            @forelse ($kela->waliKelas as $item)
+                                            @foreach ($siswa->kelas as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->guru->nama }}</td>
+                                                    <td>{{ $item->kelas->nama }}</td>
                                                     <td>{{ $item->tahunAjaran->tahun_ajaran }}</td>
                                                     <td>{{ $item->tahunAjaran->semester == 1 ? 'Ganjil' : 'Genap' }}</td>
                                                     <td>
@@ -182,67 +205,6 @@
                                                         @else
                                                             <span class="badge badge-secondary">Tidak Aktif</span>
                                                         @endif
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td>No data</td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                        <!--end::Table body-->
-                                    </table>
-                                </div>
-                                <!--end::Table-->
-                            </div>
-                            <!--end: Card Body-->
-                        </div>
-                        <!--end::Tables widget 14-->
-
-                        <!--begin::Tables widget 14-->
-                        <div class="card card-flush mt-5">
-                            <!--begin::Header-->
-                            <div class="card-header pt-7 d-flex-justify-content-between">
-                                <!--begin::Title-->
-                                <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label fw-bold text-gray-800">Siswa</span>
-                                </h3>
-                                <!--end::Title-->
-
-                                <a href="{{ route('admin.kelas.siswa.select', $kela) }}" class="btn btn-sm btn-info" style="height: 35px;">
-                                    <i class="fa fa-user"></i> Siswa
-                                </a>
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Body-->
-                            <div class="card-body pt-6">
-                                <!--begin::Table container-->
-                                <div class="table-responsive">
-                                    <!--begin::Table-->
-                                    <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
-                                        <!--begin::Table head-->
-                                        <thead>
-                                            <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
-                                                <th>#</th>
-                                                <th>Tahun Ajaran</th>
-                                                <th>Nama</th>
-                                                <th>NISN</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <!--end::Table head-->
-                                        <!--begin::Table body-->
-                                        <tbody>
-                                            @foreach ($kela->siswa->where('id_tahun_ajaran', $tahunAjaranAktif->id) as $item)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->tahunAjaran->tahun_ajaran }}
-                                                        ({{ $item->tahunAjaran->semester == 1 ? 'Ganjil' : 'Genap' }})
-                                                    </td>
-                                                    <td>{{ $item->siswa->nama }}</td>
-                                                    <td>{{ $item->siswa->nisn }}</td>
-                                                    <td>{{ $item->siswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -268,7 +230,7 @@
 @endsection
 
 @section('custom_html')
-    <form action="{{ route('admin.kelas.destroy', $kela) }}" method="post" id="delete-form">
+    <form action="{{ route('admin.siswa.destroy', $siswa) }}" method="post" id="delete-form">
         @csrf
         @method('DELETE')
     </form>

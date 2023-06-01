@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Guru;
 use App\Models\Kelas;
+use App\Models\Siswa;
 use App\Models\Jurusan;
+use App\Models\Wali_kelas;
+use App\Models\Tahun_ajaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Tahun_ajaran;
-use App\Models\Wali_kelas;
 
 class KelasController extends Controller
 {
@@ -61,10 +62,12 @@ class KelasController extends Controller
     public function show(Kelas $kela)
     {
         $kela->load([
-            'waliKelas', 'waliKelas.guru', 'waliKelas.tahunAjaran',
+            'waliKelas', 'waliKelas.guru', 'waliKelas.tahunAjaran', 'siswa', 'siswa.tahunAjaran', 'siswa.siswa'
         ]);
+        $tahunAjaranAktif = Tahun_ajaran::where('aktif', 1)->firstOrFail();
+        $tahunAjaran = Tahun_ajaran::all();
 
-        return view('admin.kelas.show', compact('kela'));
+        return view('admin.kelas.show', compact('kela', 'tahunAjaranAktif', 'tahunAjaran'));
     }
 
     /**
@@ -111,6 +114,12 @@ class KelasController extends Controller
             ->withSuccess('Kelas berhasil dihapus.');
     }
 
+    /**
+     * Update wali kelas.
+     * 
+     * @param \App\Models\Kelas $kela
+     * @return \Illuminate\Http\Response
+     */
     public function waliKelas(Kelas $kela)
     {
         $guru = Guru::all();
@@ -119,6 +128,13 @@ class KelasController extends Controller
         return view('admin.kelas.wali-kelas', compact('kela', 'guru', 'tahunAjaran'));
     }
 
+    /**
+     * Update wali kelas.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Kelas $kela
+     * @return \Illuminate\Http\Response
+     */
     public function updateWaliKelas(Request $request, Kelas $kela)
     {
         $request->validate([
@@ -167,5 +183,42 @@ class KelasController extends Controller
         return redirect()
             ->route('admin.kelas.show', $kela)
             ->withSuccess('Wali kelas berhasil diperbarui.');
+    }
+
+    public function siswa(Kelas $kela)
+    {
+        $tahunAjaranAktif = Tahun_ajaran::where('aktif', 1)->firstOrFail();
+
+        $siswa = Siswa::whereDoesntHave('kelas', function ($query) use ($tahunAjaranAktif) {
+            $query->where('id_tahun_ajaran', $tahunAjaranAktif->id);
+        })->get();
+
+        return view('admin.kelas.siswa', compact('siswa', 'kela'));
+    }
+
+    public function updateSiswa(Request $request, Kelas $kela)
+    {
+        $siswa = $request->siswa;
+
+        if (is_null($siswa) || count($siswa) == 0) {
+            return redirect()
+                ->back()
+                ->withInfo('Silahkan pilih siswa untuk ditambahkan ke kelas');
+        }
+
+        $tahunAjaranAktif = Tahun_ajaran::where('aktif', 1)->firstOrFail();
+
+        foreach ($siswa as $id => $item) {
+            $siswa = Siswa::findOrFail($id);
+
+            $kela->siswa()->create([
+                'id_siswa' => $siswa->id,
+                'id_tahun_ajaran' => $tahunAjaranAktif->id,
+            ]);
+        }
+
+        return redirect()
+            ->route('admin.kelas.show', $kela)
+            ->withSuccess('Siswa berhasil ditambahkan ke kelas.');
     }
 }
