@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PelajaranController;
+use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
+use App\Http\Controllers\Guru\PelajaranController as GuruPelajaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ Route::get('/dashboard', function () {
 
     if ($userRole === 'admin') {
         return redirect()->route('admin.dashboard');
+    } else if ($userRole == 'guru') {
+        return redirect()->route('guru.dashboard');
     }
 })->middleware('auth');
 
@@ -55,6 +59,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/pelajaran/{pelajaran}/guru', [PelajaranController::class, 'guru'])->name('pelajaran.guru.select');
         Route::put('/pelajaran/{pelajaran}/guru', [PelajaranController::class, 'updateGuru'])->name('pelajaran.guru.update');
         Route::resource('pelajaran', PelajaranController::class);
+    });
+
+    Route::group(['prefix' => 'guru', 'as' => 'guru.'], function () {
+        Route::get('/dashboard', [GuruDashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('pelajaran', GuruPelajaranController::class)->only(['index', 'show']);
     });
 });
 

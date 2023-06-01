@@ -131,7 +131,7 @@
                                         <tr>
                                             <td>Tanggal Lahir</td>
                                             <td>
-                                                <strong>{{ $siswa->tanggal_lahir->translatedFormat('l, d M Y') }}</strong>
+                                                <strong>{{ $siswa->tanggal_lahir?->translatedFormat('l, d M Y') }}</strong>
                                             </td>
                                         </tr>
                                         <tr>

@@ -191,7 +191,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="date" name="tanggal_lahir"
-                                                    value="{{ old('tanggal_lahir', $guru->tanggal_lahir->format('Y-m-d')) }}"
+                                                    value="{{ old('tanggal_lahir', $guru->tanggal_lahir?->format('Y-m-d')) }}"
                                                     class="form-control @error('tanggal_lahir') is-invalid @enderror"
                                                     required>
                                                 <!--end::Input-->

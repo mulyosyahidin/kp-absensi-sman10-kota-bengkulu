@@ -125,7 +125,7 @@
                                         <tr>
                                             <td>Tanggal Lahir</td>
                                             <td>
-                                                <strong>{{ $guru->tanggal_lahir->translatedFormat('l, d M Y') }}</strong>
+                                                <strong>{{ $guru->tanggal_lahir?->translatedFormat('l, d M Y') }}</strong>
                                             </td>
                                         </tr>
                                         <tr>

@@ -67,3 +67,12 @@ if (!function_exists('tahunAjaranAktif')) {
         return 'Tidak ada tahun ajaran aktif';
     }
 }
+
+if (!function_exists('dataTahunAjaranAktif')) {
+    function dataTahunAjaranAktif()
+    {
+        $data = \App\Models\Tahun_ajaran::where('aktif', 1)->first();
+
+        return $data;
+    }
+}
