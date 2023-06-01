@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guru;
+use App\Models\Guru_pelajaran;
+use App\Models\Kelas;
 use App\Models\Pelajaran;
+use App\Models\Tahun_ajaran;
 use Illuminate\Http\Request;
 
 class PelajaranController extends Controller
@@ -49,6 +53,8 @@ class PelajaranController extends Controller
      */
     public function show(Pelajaran $pelajaran)
     {
+        $pelajaran->load('guru', 'guru.guru', 'guru.tahunAjaran', 'guru.kelas');
+
         return view('admin.pelajaran.show', compact('pelajaran'));
     }
 
@@ -88,5 +94,48 @@ class PelajaranController extends Controller
         return redirect()
             ->route('admin.pelajaran.index')
             ->withSuccess('Pelajaran berhasil dihapus');
+    }
+
+    /**
+     * Tambah guru pelajaran.
+     * 
+     * @param Pelajaran $pelajaran
+     * @return \Illuminate\Http\Response
+     */
+    public function guru(Pelajaran $pelajaran)
+    {
+        $guru = Guru::all();
+        $kelas = Kelas::where('tingkat', $pelajaran->tingkat)->get();
+
+        return view('admin.pelajaran.guru', compact('pelajaran', 'guru', 'kelas'));
+    }
+
+    /**
+     * Tambah guru pelajaran.
+     * 
+     * @param Pelajaran $pelajaran
+     * @return \Illuminate\Http\Response
+     */
+    public function updateGuru(Request $request, Pelajaran $pelajaran)
+    {
+        $request->validate([
+            'id_guru' => 'required|exists:guru,id',
+            'kelas' => 'required|array',
+        ]);
+
+        $tahunAjaranAktif = Tahun_ajaran::where('aktif', true)->first();
+
+        foreach ($request->kelas as $idKelas) {
+            Guru_pelajaran::create([
+                'id_tahun_ajaran' => $tahunAjaranAktif->id,
+                'id_guru' => $request->id_guru,
+                'id_pelajaran' => $pelajaran->id,
+                'id_kelas' => $idKelas,
+            ]);
+        }
+
+        return redirect()
+            ->route('admin.pelajaran.show', $pelajaran)
+            ->withSuccess('Berhasil menambah guru pelajaran');
     }
 }

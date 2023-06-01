@@ -111,10 +111,6 @@
                             <!--end: Card Body-->
                             <!--begin::Footer-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9 gap-2">
-                                <a href="#" class="btn btn-sm btn-info">
-                                    <i class="fa fa-user"></i>
-                                    Guru Mata Pelajaran
-                                </a>
                                 <a href="{{ route('admin.pelajaran.edit', $pelajaran) }}" class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i>
                                     Edit
@@ -131,12 +127,18 @@
                         <!--begin::Tables widget 14-->
                         <div class="card card-flush mt-5">
                             <!--begin::Header-->
-                            <div class="card-header pt-7">
+                            <div class="card-header pt-7 d-flex justify-content-between">
                                 <!--begin::Title-->
                                 <h3 class="card-title align-items-start flex-column">
                                     <span class="card-label fw-bold text-gray-800">Guru Mata Pelajaran</span>
                                 </h3>
                                 <!--end::Title-->
+
+                                <a href="{{ route('admin.pelajaran.guru.select', $pelajaran) }}" style="height: 35px;"
+                                    class="btn btn-sm btn-info">
+                                    <i class="fa fa-user"></i>
+                                    Tambah
+                                </a>
                             </div>
                             <!--end::Header-->
                             <!--begin::Body-->
@@ -158,6 +160,20 @@
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
+                                            @foreach ($pelajaran->guru->groupBy('id_guru') as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->first()->guru->nama }}</td>
+                                                    <td>{{ $item->first()->tahunAjaran->tahun_ajaran }}
+                                                        ({{ $item->first()->tahunAjaran->semester == 1 ? 'Ganjil' : 'Genap' }})
+                                                    </td>
+                                                    <td>
+                                                        @foreach ($item as $kelas)
+                                                            <span class="badge badge-secondary">{{ $kelas->kelas->nama }}</span>
+                                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                         <!--end::Table body-->
                                     </table>

@@ -33,4 +33,9 @@ class Pelajaran extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function guru()
+    {
+        return $this->hasMany(Guru_pelajaran::class, 'id_pelajaran');
+    }
 }
