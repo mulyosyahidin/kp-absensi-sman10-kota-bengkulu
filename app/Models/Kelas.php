@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jurusan extends Model
+class Kelas extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Jurusan extends Model
      * 
      * @var string
      */
-    protected $table = 'jurusan';
+    protected $table = 'kelas';
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +22,9 @@ class Jurusan extends Model
      * @var array
      */
     protected $fillable = [
+        'id_jurusan',
         'nama',
+        'tingkat',
     ];
 
     /**
@@ -33,10 +35,10 @@ class Jurusan extends Model
     public $timestamps = false;
 
     /**
-     * Get all of the kelas for the jurusan.
+     * Get the jurusan that owns the kelas.
      */
-    public function kelas()
+    public function jurusan()
     {
-        return $this->hasMany(Kelas::class, 'id_jurusan');
+        return $this->belongsTo(Jurusan::class, 'id_jurusan');
     }
 }

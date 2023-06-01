@@ -47,6 +47,8 @@ class JurusanController extends Controller
      */
     public function show(Jurusan $jurusan)
     {
+        $jurusan->loadCount('kelas');
+        
         return view('admin.jurusan.show', compact('jurusan'));
     }
 

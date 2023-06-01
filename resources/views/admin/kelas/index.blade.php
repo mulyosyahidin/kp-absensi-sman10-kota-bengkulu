@@ -1,5 +1,5 @@
 @extends('layouts.metronic')
-@section('title', 'Kelola Data Jurusan')
+@section('title', 'Kelola Data Kelas')
 
 @section('content')
     <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Kelola Jurusan</h1>
+                        Kelola Kelas</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -27,7 +27,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Jurusan</li>
+                        <li class="breadcrumb-item text-muted">Kelas</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -36,7 +36,7 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
-                    <a href="{{ route('admin.jurusan.create') }}" class="btn btn-sm fw-bold btn-primary">
+                    <a href="{{ route('admin.kelas.create') }}" class="btn btn-sm fw-bold btn-primary">
                         Tambah
                     </a>
                     <!--end::Primary button-->
@@ -60,7 +60,7 @@
                             <div class="card-header pt-7">
                                 <!--begin::Title-->
                                 <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label fw-bold text-gray-800">Data Jurusan</span>
+                                    <span class="card-label fw-bold text-gray-800">Data Kelas</span>
                                 </h3>
                                 <!--end::Title-->
                             </div>
@@ -76,22 +76,26 @@
                                             <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
                                                 <th>#</th>
                                                 <th>Nama</th>
+                                                <th>Tingkat</th>
+                                                <th>Jurusan</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
-                                            @forelse ($jurusan as $item)
+                                            @forelse ($kelas as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->nama }}</td>
+                                                    <td>{{ $item->tingkat }}</td>
+                                                    <td>{{ $item->jurusan->nama }}</td>
                                                     <td class="text-end">
-                                                        <a href="{{ route('admin.jurusan.show', $item) }}"
+                                                        <a href="{{ route('admin.kelas.show', $item) }}"
                                                             class="btn btn-sm btn-success">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <a href="{{ route('admin.jurusan.edit', $item) }}"
+                                                        <a href="{{ route('admin.kelas.edit', $item) }}"
                                                             class="btn btn-sm btn-warning">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
@@ -155,7 +159,7 @@
                         let form = document.querySelector('#delete-form');
 
                         form.setAttribute(`action`,
-                            `{{ route('admin.jurusan.destroy', false) }}/${id}`);
+                            `{{ route('admin.kelas.destroy', false) }}/${id}`);
                         form.submit();
                     }
                 })

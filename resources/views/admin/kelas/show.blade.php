@@ -1,5 +1,5 @@
 @extends('layouts.metronic')
-@section('title', $jurusan->nama)
+@section('title', $kela->nama)
 
 @section('content')
     <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ $jurusan->nama }}</h1>
+                        {{ $kela->nama }}</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -28,7 +28,7 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.jurusan.index') }}" class="text-muted text-hover-primary">Jurusan</a>
+                            <a href="{{ route('admin.kelas.index') }}" class="text-muted text-hover-primary">Kelas</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -37,7 +37,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">{{ $jurusan->nama }}</li>
+                        <li class="breadcrumb-item text-muted">{{ $kela->nama }}</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -46,7 +46,7 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
-                    <a href="{{ route('admin.jurusan.index') }}" class="btn btn-sm fw-bold btn-primary">
+                    <a href="{{ route('admin.kelas.index') }}" class="btn btn-sm fw-bold btn-primary">
                         Kembali
                     </a>
                     <!--end::Primary button-->
@@ -70,7 +70,7 @@
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title m-0">
-                                    <h3 class="fw-bold m-0">{{ $jurusan->nama }}</h3>
+                                    <h3 class="fw-bold m-0">{{ $kela->nama }}</h3>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -83,19 +83,37 @@
                                         <tr>
                                             <td>ID</td>
                                             <td>
-                                                <strong>{{ $jurusan->id }}</strong>
+                                                <strong>{{ $kela->id }}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wali Kelas</td>
+                                            <td>
+                                                <strong></strong>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Nama</td>
                                             <td>
-                                                <strong>{{ $jurusan->nama }}</strong>
+                                                <strong>{{ $kela->nama }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Jumlah Kelas</td>
+                                            <td>Tingkat</td>
                                             <td>
-                                                <strong>{{ $jurusan->kelas_count }}</strong>
+                                                <strong>{{ $kela->tingkat }}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jurusan</td>
+                                            <td>
+                                                <strong>{{ $kela->jurusan->nama }}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Siswa</td>
+                                            <td>
+                                                <strong></strong>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -104,7 +122,7 @@
                             <!--end: Card Body-->
                             <!--begin::Footer-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9 gap-2">
-                                <a href="{{ route('admin.jurusan.edit', $jurusan) }}" class="btn btn-sm btn-warning">
+                                <a href="{{ route('admin.kelas.edit', $kela) }}" class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i>
                                     Edit
                                 </a>
@@ -123,7 +141,7 @@
                             <div class="card-header pt-7">
                                 <!--begin::Title-->
                                 <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label fw-bold text-gray-800">Kelas</span>
+                                    <span class="card-label fw-bold text-gray-800">Siswa</span>
                                 </h3>
                                 <!--end::Title-->
                             </div>
@@ -139,21 +157,14 @@
                                             <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
                                                 <th>#</th>
                                                 <th>Nama</th>
-                                                <th>Tingkat</th>
+                                                <th>NISN</th>
+                                                <th>Jenis Kelamin</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
-                                        <tbody>
-                                            @foreach ($jurusan->kelas as $kelas)
-                                                <tr>
-                                                    <td>{{ $kelas->id }}</td>
-                                                    <td>{{ $kelas->nama }}</td>
-                                                    <td>{{ $kelas->tingkat }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
+                                        <tbody></tbody>
                                         <!--end::Table body-->
                                     </table>
                                 </div>
@@ -175,7 +186,7 @@
 @endsection
 
 @section('custom_html')
-    <form action="{{ route('admin.jurusan.destroy', $jurusan) }}" method="post" id="delete-form">
+    <form action="{{ route('admin.kelas.destroy', $kela) }}" method="post" id="delete-form">
         @csrf
         @method('DELETE')
     </form>
