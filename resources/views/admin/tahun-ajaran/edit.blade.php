@@ -77,7 +77,7 @@
                     <!--begin::Col-->
                     <div class="col-12">
                         <form action="{{ route('admin.tahun-ajaran.update', $tahun_ajaran) }}" method="POST"
-                            enctype="multipart/form-data">
+                           >
                             @csrf
                             @method('PUT')
 

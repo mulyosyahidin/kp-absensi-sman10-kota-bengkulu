@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Tahun_ajaran;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TahunAjaranController extends Controller
 {
@@ -31,7 +32,7 @@ class TahunAjaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tahun_ajaran' => 'required|unique:tahun_ajaran',
+            'tahun_ajaran' => 'required',
             'semester' => 'required|in:1,2',
             'tanggal_mulai' => 'required|date|before:tanggal_selesai',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',

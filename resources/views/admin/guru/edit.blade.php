@@ -76,7 +76,7 @@
                     <!--begin::Col-->
                     <div class="col-12">
                         <form action="{{ route('admin.guru.update', $guru) }}" method="POST"
-                            enctype="multipart/form-data">
+                           >
                             @csrf
                             @method('PUT')
 

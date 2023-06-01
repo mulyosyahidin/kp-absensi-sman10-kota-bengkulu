@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Models\Kelas;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('jurusan', JurusanController::class);
+        Route::get('/kelas/{kela}/wali-kelas', [KelasController::class, 'waliKelas'])->name('kelas.wali-kelas.select');
+        Route::put('/kelas/{kela}/wali-kelas', [KelasController::class, 'updateWaliKelas'])->name('kelas.wali-kelas.update');
         Route::resource('kelas', KelasController::class);
         Route::resource('tahun-ajaran', TahunAjaranController::class);
         Route::resource('guru', GuruController::class);

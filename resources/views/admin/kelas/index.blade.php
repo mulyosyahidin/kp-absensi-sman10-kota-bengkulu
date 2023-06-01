@@ -78,6 +78,7 @@
                                                 <th>Nama</th>
                                                 <th>Tingkat</th>
                                                 <th>Jurusan</th>
+                                                <th>Wali Kelas</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -90,6 +91,7 @@
                                                     <td>{{ $item->nama }}</td>
                                                     <td>{{ $item->tingkat }}</td>
                                                     <td>{{ $item->jurusan->nama }}</td>
+                                                    <td>{{ $item->waliKelas->where('aktif', true)->first()->guru->nama ?? '' }}</td>
                                                     <td class="text-end">
                                                         <a href="{{ route('admin.kelas.show', $item) }}"
                                                             class="btn btn-sm btn-success">

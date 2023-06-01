@@ -76,7 +76,7 @@
                     <!--begin::Col-->
                     <div class="col-12">
                         <form action="{{ route('admin.jurusan.update', $jurusan) }}" method="POST"
-                            enctype="multipart/form-data">
+                           >
                             @csrf
                             @method('PUT')
 

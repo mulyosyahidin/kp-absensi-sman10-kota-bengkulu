@@ -77,6 +77,8 @@ class GuruController extends Controller
      */
     public function show(Guru $guru)
     {
+        $guru->load('waliKelas.guru', 'waliKelas.kelas', 'waliKelas.tahunAjaran');
+
         return view('admin.guru.show', compact('guru'));
     }
 

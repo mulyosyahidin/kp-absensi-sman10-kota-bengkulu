@@ -89,7 +89,7 @@
                                         <tr>
                                             <td>Wali Kelas</td>
                                             <td>
-                                                <strong></strong>
+                                                <strong>{{ $kela->waliKelas->where('aktif', true)->first()->guru->nama ?? '' }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
@@ -122,6 +122,10 @@
                             <!--end: Card Body-->
                             <!--begin::Footer-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9 gap-2">
+                                <a href="{{ route('admin.kelas.wali-kelas.select', $kela) }}" class="btn btn-sm btn-info">
+                                    <i class="fa fa-user"></i>
+                                    Wali Kelas
+                                </a>
                                 <a href="{{ route('admin.kelas.edit', $kela) }}" class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i>
                                     Edit
@@ -132,6 +136,66 @@
                                 </a>
                             </div>
                             <!--end::Footer-->
+                        </div>
+                        <!--end::Tables widget 14-->
+
+                        <!--begin::Tables widget 14-->
+                        <div class="card card-flush mt-5">
+                            <!--begin::Header-->
+                            <div class="card-header pt-7">
+                                <!--begin::Title-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold text-gray-800">Riwayat Wali Kelas</span>
+                                </h3>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body pt-6">
+                                <!--begin::Table container-->
+                                <div class="table-responsive">
+                                    <!--begin::Table-->
+                                    <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                        <!--begin::Table head-->
+                                        <thead>
+                                            <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
+                                                <th>#</th>
+                                                <th>Nama</th>
+                                                <th>Tahun Ajaran</th>
+                                                <th>Semester</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <!--end::Table head-->
+                                        <!--begin::Table body-->
+                                        <tbody>
+                                            @forelse ($kela->waliKelas as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->guru->nama }}</td>
+                                                    <td>{{ $item->tahunAjaran->tahun_ajaran }}</td>
+                                                    <td>{{ $item->tahunAjaran->semester == 1 ? 'Ganjil' : 'Genap' }}</td>
+                                                    <td>
+                                                        @if ($item->aktif)
+                                                            <span class="badge badge-success">Aktif</span>
+                                                        @else
+                                                            <span class="badge badge-secondary">Tidak Aktif</span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td>No data</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                        <!--end::Table body-->
+                                    </table>
+                                </div>
+                                <!--end::Table-->
+                            </div>
+                            <!--end: Card Body-->
                         </div>
                         <!--end::Tables widget 14-->
 

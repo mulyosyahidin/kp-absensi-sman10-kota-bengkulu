@@ -64,7 +64,7 @@
                 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                     <!--begin::Col-->
                     <div class="col-12">
-                        <form action="{{ route('admin.jurusan.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.jurusan.store') }}" method="POST">
                             @csrf
 
                             <!--begin::Tables widget 14-->

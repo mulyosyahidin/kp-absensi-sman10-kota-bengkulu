@@ -56,4 +56,14 @@ class Guru extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Wali kelas data associated with the guru.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function waliKelas()
+    {
+        return $this->hasMany(Wali_kelas::class, 'id_guru', 'id');
+    }
 }

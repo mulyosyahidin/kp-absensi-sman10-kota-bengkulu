@@ -41,4 +41,14 @@ class Kelas extends Model
     {
         return $this->belongsTo(Jurusan::class, 'id_jurusan');
     }
+
+    /**
+     * Wali kelas data associated with the kelas.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function waliKelas()
+    {
+        return $this->hasMany(Wali_kelas::class, 'id_kelas');
+    }
 }

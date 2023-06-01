@@ -113,7 +113,7 @@
                                         <tr>
                                             <td>Jenis Kelamin</td>
                                             <td>
-                                                <strong>{{ $guru->jenis_kelamin == 'L' ? 'Laki-laki': 'Perempuan' }}</strong>
+                                                <strong>{{ $guru->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</strong>
                                             </td>
                                         </tr>
                                         <tr>
@@ -176,12 +176,33 @@
                                                 <th>#</th>
                                                 <th>Kelas</th>
                                                 <th>Tahun Ajaran</th>
+                                                <th>Semester</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
-                                        <tbody></tbody>
+                                        <tbody>
+                                            @forelse ($guru->waliKelas as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->kelas->nama }}</td>
+                                                    <td>{{ $item->tahunAjaran->tahun_ajaran }}</td>
+                                                    <td>{{ $item->tahunAjaran->semester == 1 ? 'Ganjil' : 'Genap' }}</td>
+                                                    <td>
+                                                        @if ($item->aktif)
+                                                            <span class="badge badge-success">Aktif</span>
+                                                        @else
+                                                            <span class="badge badge-secondary">Tidak Aktif</span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td>No data</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
                                         <!--end::Table body-->
                                     </table>
                                 </div>

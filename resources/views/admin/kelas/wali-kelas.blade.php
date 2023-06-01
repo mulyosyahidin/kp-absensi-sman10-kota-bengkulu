@@ -1,5 +1,5 @@
 @extends('layouts.metronic')
-@section('title', $kela->nama . ' - Edit Kelas')
+@section('title', 'Pilih Wali Kelas')
 
 @section('content')
     <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Edit Kelas</h1>
+                        Pilih Wali Kelas</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -48,7 +48,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Edit</li>
+                        <li class="breadcrumb-item text-muted">Pilih Wali</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -75,8 +75,7 @@
                 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                     <!--begin::Col-->
                     <div class="col-12">
-                        <form action="{{ route('admin.kelas.update', $kela) }}" method="POST"
-                           >
+                        <form action="{{ route('admin.kelas.wali-kelas.update', $kela) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -86,55 +85,40 @@
                                 <div class="card-header border-0">
                                     <!--begin::Card title-->
                                     <div class="card-title m-0">
-                                        <h3 class="fw-bold m-0">Edit Kelas</h3>
+                                        <h3 class="fw-bold m-0">Pilih Wali Kelas</h3>
                                     </div>
                                     <!--end::Card title-->
                                 </div>
                                 <!--begin::Card header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-6 border-top">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold form-label mt-3">
-                                            <span>Jurusan</span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <select name="id_jurusan" id="jurusan"
-                                            class="form-control 2select @error('id_jurusan') is-invalid @enderror">
-                                            <option selected disabled>Pilih Jurusan</option>
-                                            @foreach ($jurusan as $item)
-                                                <option value="{{ $item->id }}"
-                                                    @if (old('id_jurusan', $kela->id_jurusan) == $item->id) selected @endif>{{ $item->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <!--end::Input-->
-
-                                        @error('id_jurusan')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <!--end::Input group-->
-
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <!--begin::Input group-->
                                             <div class="fv-row mb-7">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span>Nama</span>
+                                                    <span>Tahun Ajaran</span>
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="nama" value="{{ old('nama', $kela->nama) }}"
-                                                    class="form-control @error('nama') is-invalid @enderror" required>
+                                                <select name="id_tahun_ajaran" id="tahun-ajaran"
+                                                    class="form-control 2select @error('id_tahun_ajaran') is-invalid @enderror">
+                                                    <option selected disabled>Pilih Tahun Ajaran</option>
+                                                    @foreach ($tahunAjaran as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            @if (old('id_tahun_ajaran') == $item->id) selected @endif>
+                                                            {{ $item->tahun_ajaran }}
+                                                            ({{ $item->semester == 1 ? 'Ganjil' : 'Genap' }})
+                                                            @if ($item->aktif)
+                                                                (TA Aktif)
+                                                            @endif
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                                 <!--end::Input-->
 
-                                                @error('nama')
+                                                @error('id_tahun_ajaran')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -147,23 +131,23 @@
                                             <div class="fv-row mb-7">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span>Tingkat</span>
+                                                    <span>Wali Kelas</span>
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <select name="tingkat" id="tingkat"
-                                                    class="form-control 2select @error('tingkat') is-invalid @enderror">
-                                                    <option selected disabled>Pilih Tingkat</option>
-                                                    <option value="1"
-                                                        @if (old('tingkat', $kela->tingkat) == '1') selected @endif>X</option>
-                                                    <option value="2"
-                                                        @if (old('tingkat', $kela->tingkat) == '2') selected @endif>XI</option>
-                                                    <option value="3"
-                                                        @if (old('tingkat', $kela->tingkat) == '3') selected @endif>XII</option>
+                                                <select name="id_guru" id="guru"
+                                                    class="form-control 2select @error('id_guru') is-invalid @enderror">
+                                                    <option selected disabled>Pilih Wali Kelas</option>
+                                                    @foreach ($guru as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            @if (old('id_guru') == $item->id) selected @endif>
+                                                            {{ $item->nama }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                                 <!--end::Input-->
 
-                                                @error('tingkat')
+                                                @error('id_guru')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
