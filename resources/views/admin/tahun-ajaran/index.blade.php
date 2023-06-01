@@ -157,13 +157,13 @@
 
             btn.addEventListener('click', function() {
                 Swal.fire({
-                    title: 'Remove Data?',
-                    text: "Are you sure you want to delete? Deleted data cannot be recovered!",
+                    title: 'Hapus Data?',
+                    text: "Yakin ingin menghapus data? Data yang sudah dihapus tidak dapat dikembalikan!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Remove',
+                    confirmButtonText: 'Hapus',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         let form = document.querySelector('#delete-form');
