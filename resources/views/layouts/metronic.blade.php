@@ -34,6 +34,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="{{ asset('assets/themes/metronic/plugins/global/plugins.bundle.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/themes/metronic/css/style.bundle.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/themes/metronic/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet">
     <!--end::Global Stylesheets Bundle-->
 
 
@@ -94,7 +95,7 @@ License: For each use you must have a valid license purchased only from above li
             <!--begin::Wrapper-->
             <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 
-                @include('layouts.includes.metronic.sidebar-'. auth()->user()->role)
+                @include('layouts.includes.metronic.sidebar-' . auth()->user()->role)
 
                 <!--begin::Main-->
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -138,6 +139,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="{{ asset('assets/themes/metronic/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/themes/metronic/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/themes/metronic/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--end::Global Javascript Bundle-->
 

@@ -74,4 +74,14 @@ class Guru_pelajaran extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
+
+    /**
+     * Kelas yang diajar oleh guru pada pelajaran tertentu
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function guruKelas()
+    {
+        return $this->hasMany(Guru_pelajaran_kelas::class, 'id_guru_pelajaran');
+    }
 }

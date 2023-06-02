@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pelajaran extends Model
+class Guru_pelajaran_kelas extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Pelajaran extends Model
      * 
      * @var string
      */
-    protected $table = 'pelajaran';
+    protected $table = 'guru_pelajaran_kelas';
 
     /**
      * The attributes that are mass assignable.
@@ -22,9 +22,8 @@ class Pelajaran extends Model
      * @var array
      */
     protected $fillable = [
-        'nama',
-        'tingkat',
-        'jenis',
+        'id_guru_pelajaran',
+        'id_kelas',
     ];
 
     /**
@@ -35,12 +34,22 @@ class Pelajaran extends Model
     public $timestamps = false;
 
     /**
-     * Get the guru_pelajaran that owns the Pelajaran
+     * Get the kelas that owns the guru pelajaran.
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function guru()
+    public function kelas()
     {
-        return $this->hasMany(Guru_pelajaran::class, 'id_pelajaran');
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
+
+    /**
+     * Get the guru pelajaran that owns the kelas.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function guruPelajaran()
+    {
+        return $this->belongsTo(Guru_pelajaran::class, 'id_guru_pelajaran');
     }
 }

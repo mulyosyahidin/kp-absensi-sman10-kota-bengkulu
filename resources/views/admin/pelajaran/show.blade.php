@@ -168,8 +168,9 @@
                                                         ({{ $item->first()->tahunAjaran->semester == 1 ? 'Ganjil' : 'Genap' }})
                                                     </td>
                                                     <td>
-                                                        @foreach ($item as $kelas)
-                                                            <span class="badge badge-secondary">{{ $kelas->kelas->nama }}</span>
+                                                        @foreach ($item->first()->guruKelas as $guruKelas)
+                                                            <span
+                                                                class="badge badge-secondary">{{ $guruKelas->kelas->nama }}</span>
                                                         @endforeach
                                                     </td>
                                                 </tr>

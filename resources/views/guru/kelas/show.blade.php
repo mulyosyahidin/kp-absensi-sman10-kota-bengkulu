@@ -111,6 +111,14 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Jumlah Pelajaran Saya</td>
+                                            <td>
+                                                <strong>
+                                                    {{ $kela->pelajaran->where('guruPelajaran.id_guru', auth()->user()->guru->id)->count() }}
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td>Jumlah Siswa</td>
                                             <td>
                                                 <strong>{{ $kela->siswa->where('id_tahun_ajaran', dataTahunAjaranAktif()->id)->count() }}</strong>
@@ -152,12 +160,12 @@
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
-                                            @forelse ($kela->pelajaran->where('id_guru', auth()->user()->guru->id) as $item)
+                                            @forelse ($kela->pelajaran->where('guruPelajaran.id_guru', auth()->user()->guru->id) as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->pelajaran->nama }}</td>
-                                                    <td>{{ $item->pelajaran->tingkat }}</td>
-                                                    <td>{{ $item->pelajaran->jenis == 'umum' ? 'Pelajaran Umum' : 'Pelajaran Jurusan' }}
+                                                    <td>{{ $item->guruPelajaran->pelajaran->nama }}</td>
+                                                    <td>{{ $item->guruPelajaran->pelajaran->tingkat }}</td>
+                                                    <td>{{ $item->guruPelajaran->pelajaran->jenis == 'umum' ? 'Pelajaran Umum' : 'Pelajaran Jurusan' }}
                                                     </td>
                                                 </tr>
                                             @empty

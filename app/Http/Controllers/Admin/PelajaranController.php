@@ -53,7 +53,7 @@ class PelajaranController extends Controller
      */
     public function show(Pelajaran $pelajaran)
     {
-        $pelajaran->load('guru', 'guru.guru', 'guru.tahunAjaran', 'guru.kelas');
+        $pelajaran->load('guru', 'guru.guru', 'guru.tahunAjaran', 'guru.kelas', 'guru.guruKelas.kelas');
 
         return view('admin.pelajaran.show', compact('pelajaran'));
     }
@@ -125,11 +125,14 @@ class PelajaranController extends Controller
 
         $tahunAjaranAktif = Tahun_ajaran::where('aktif', true)->first();
 
+        $guruPelajaran = Guru_pelajaran::create([
+            'id_tahun_ajaran' => $tahunAjaranAktif->id,
+            'id_guru' => $request->id_guru,
+            'id_pelajaran' => $pelajaran->id,
+        ]);
+
         foreach ($request->kelas as $idKelas) {
-            Guru_pelajaran::create([
-                'id_tahun_ajaran' => $tahunAjaranAktif->id,
-                'id_guru' => $request->id_guru,
-                'id_pelajaran' => $pelajaran->id,
+            $guruPelajaran->guruKelas()->create([
                 'id_kelas' => $idKelas,
             ]);
         }

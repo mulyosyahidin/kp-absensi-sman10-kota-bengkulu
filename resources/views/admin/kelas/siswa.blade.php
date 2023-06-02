@@ -1,11 +1,6 @@
 @extends('layouts.metronic')
 @section('title', 'Pilih Siswa Kelas ' . $kela->nama)
 
-@section('custom_head')
-    <link href="{{ asset('assets/themes/metronic/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
-@endsection
-
 @section('content')
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
@@ -143,8 +138,6 @@
 @endsection
 
 @push('custom_js')
-    <script src="{{ asset('assets/themes/metronic/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-
     <script>
         $('#datatable').DataTable({
             dom: '<"d-flex justify-content-between"<"left"l<"submit-button">>f>rt<"d-flex justify-content-between"ip><"clear">',

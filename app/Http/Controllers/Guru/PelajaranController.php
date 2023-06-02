@@ -14,10 +14,9 @@ class PelajaranController extends Controller
      */
     public function index()
     {
-        $pelajaran = Guru_pelajaran::select('id_pelajaran')
-            ->where('id_guru', auth()->user()->guru->id)
+        $pelajaran = Guru_pelajaran::where('id_guru', auth()->user()->guru->id)
             ->where('id_tahun_ajaran', dataTahunAjaranAktif()->id)
-            ->groupBy('id_pelajaran')
+            ->with('pelajaran')
             ->get();
 
         return view('guru.pelajaran.index', compact('pelajaran'));
@@ -28,6 +27,8 @@ class PelajaranController extends Controller
      */
     public function show(Pelajaran $pelajaran)
     {
+        $pelajaran->load('guru.pelajaran', 'guru.kelas', 'guru.guruKelas.kelas');
+
         return view('guru.pelajaran.show', compact('pelajaran'));
     }
 }

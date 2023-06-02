@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PelajaranController;
+use App\Http\Controllers\Guru\AbsensiController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\KelasController as GuruKelasController;
 use App\Http\Controllers\Guru\PelajaranController as GuruPelajaranController;
@@ -67,6 +68,12 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('pelajaran', GuruPelajaranController::class)->only(['index', 'show']);
         Route::resource('kelas', GuruKelasController::class)->only(['index', 'show']);
+
+        Route::get('/absensi/{kelas}/pelajaran', [AbsensiController::class, 'pelajaran'])->name('absensi.pelajaran');
+        Route::get('/absensi/{kelas}/pelajaran/{pelajaran}/pertemuan', [AbsensiController::class, 'pertemuan'])->name('absensi.pertemuan');
+        Route::get('/absensi/{absensi}/absensi', [AbsensiController::class, 'absensi'])->name('absensi.absensi');
+        Route::post('/absensi/{absensi}/absensi', [AbsensiController::class, 'simpanAbsensi'])->name('absensi.simpan-absensi');
+        Route::resource('absensi', AbsensiController::class);
     });
 });
 

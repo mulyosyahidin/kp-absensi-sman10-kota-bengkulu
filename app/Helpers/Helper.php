@@ -76,3 +76,19 @@ if (!function_exists('dataTahunAjaranAktif')) {
         return $data;
     }
 }
+
+function kehadiranBadge($status)
+{
+    if ($status == 'hadir') {
+        return '<span class="badge badge-success">Hadir</span>';
+    }
+    else if ($status == 'izin') {
+        return '<span class="badge badge-info">Izin</span>';
+    }
+    else if ($status == 'sakit') {
+        return '<span class="badge badge-warning">Sakit</span>';
+    }
+    else {
+        return '<span class="badge badge-danger">Alpha</span>';
+    }
+}

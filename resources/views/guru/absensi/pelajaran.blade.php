@@ -1,5 +1,5 @@
 @extends('layouts.metronic')
-@section('title', $pelajaran->nama)
+@section('title', 'Pilih Pelajaran')
 
 @section('content')
     <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{ $pelajaran->nama }}</h1>
+                        Pilih Pelajaran</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -28,8 +28,7 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('guru.pelajaran.index') }}" class="text-muted text-hover-primary">Pelajaran
-                                Saya</a>
+                            <a href="{{ route('guru.absensi.index') }}" class="text-muted text-hover-primary">Absensi</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -38,21 +37,12 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">{{ $pelajaran->nama }}</li>
+                        <li class="breadcrumb-item text-muted">Pilih Pelajaran</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
                 </div>
                 <!--end::Page title-->
-                <!--begin::Actions-->
-                <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <!--begin::Primary button-->
-                    <a href="{{ route('guru.pelajaran.index') }}" class="btn btn-sm fw-bold btn-primary">
-                        Kembali
-                    </a>
-                    <!--end::Primary button-->
-                </div>
-                <!--end::Actions-->
             </div>
             <!--end::Toolbar container-->
         </div>
@@ -66,59 +56,13 @@
                     <!--begin::Col-->
                     <div class="col-12">
                         <!--begin::Tables widget 14-->
-                        <div class="card">
-                            <!--begin::Card header-->
-                            <div class="card-header border-0">
-                                <!--begin::Card title-->
-                                <div class="card-title m-0">
-                                    <h3 class="fw-bold m-0">{{ $pelajaran->nama }}</h3>
-                                </div>
-                                <!--end::Card title-->
-                            </div>
-                            <!--begin::Card header-->
-                            <!--begin::Body-->
-                            <div class="table-responsive border-top px-10">
-                                <table
-                                    class="table table-hover table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
-                                    <tbody>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>
-                                                <strong>{{ $pelajaran->id }}</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nama</td>
-                                            <td>
-                                                <strong>{{ $pelajaran->nama }}</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tingkat</td>
-                                            <td>
-                                                <strong>{{ $pelajaran->tingkat }}</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenis</td>
-                                            <td>
-                                                <strong>{{ $pelajaran->jenis == 'umum' ? 'Pelajaran Umum' : 'Pelajaran Penjurusan' }}</strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--end: Card Body-->
-                        </div>
-                        <!--end::Tables widget 14-->
-
-                        <!--begin::Tables widget 14-->
-                        <div class="card card-flush mt-5">
+                        <div class="card card-flush h-md-100">
                             <!--begin::Header-->
                             <div class="card-header pt-7">
                                 <!--begin::Title-->
                                 <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label fw-bold text-gray-800">Kelas</span>
+                                    <span class="card-label fw-bold text-gray-800">Pilih Pelajaran (Kelas
+                                        {{ $kelas->nama }})</span>
                                 </h3>
                                 <!--end::Title-->
                             </div>
@@ -135,19 +79,26 @@
                                                 <th>#</th>
                                                 <th>Nama</th>
                                                 <th>Tingkat</th>
+                                                <th>Jenis</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
-                                            @forelse ($pelajaran->guru->where('id_guru', auth()->user()->guru->id) as $item)
-                                                @foreach ($item->guruKelas as $guruKelas)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $guruKelas->kelas->nama }}</td>
-                                                        <td>{{ $guruKelas->kelas->tingkat }}</td>
-                                                    </tr>
-                                                @endforeach
+                                            @forelse ($kelas->pelajaran->where('guruPelajaran.id_guru', auth()->user()->guru->id) as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->guruPelajaran->pelajaran->nama }}</td>
+                                                    <td>{{ $item->guruPelajaran->pelajaran->tingkat }}</td>
+                                                    <td>{{ $item->guruPelajaran->pelajaran->jenis == 'umum' ? 'Pelajaran Umum' : 'Pelajaran Jurusan' }}
+                                                    </td>
+                                                    <td class="text-end">
+                                                        <a href="{{ route('guru.absensi.pertemuan', ['kelas' => $kelas, 'pelajaran' => $item->guruPelajaran->pelajaran]) }}"
+                                                            class="btn btn-success btn-sm">Absen <i
+                                                                class="fa fa-arrow-circle-right"></i></a>
+                                                    </td>
+                                                </tr>
                                             @empty
                                                 <tr>
                                                     <td>No data</td>
