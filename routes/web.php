@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/absensi/{kelas}/pelajaran', [AbsensiController::class, 'pelajaran'])->name('absensi.pelajaran');
         Route::get('/absensi/{kelas}/pelajaran/{pelajaran}/pertemuan', [AbsensiController::class, 'pertemuan'])->name('absensi.pertemuan');
+        Route::get('/absensi/{kelas}/pelajaran/{pelajaran}/laporan', [AbsensiController::class, 'laporan'])->name('absensi.laporan');
         Route::get('/absensi/{absensi}/absensi', [AbsensiController::class, 'absensi'])->name('absensi.absensi');
         Route::post('/absensi/{absensi}/absensi', [AbsensiController::class, 'simpanAbsensi'])->name('absensi.simpan-absensi');
         Route::resource('absensi', AbsensiController::class);

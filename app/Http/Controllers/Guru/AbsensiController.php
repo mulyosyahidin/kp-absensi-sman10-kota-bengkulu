@@ -211,4 +211,18 @@ class AbsensiController extends Controller
             ->route('guru.absensi.show', $absensi)
             ->withSuccess('Berhasil menyimpan absensi');
     }
+
+    public function laporan(Kelas $kelas, Pelajaran $pelajaran)
+    {
+        $absensi = Absensi::where('id_tahun_ajaran', dataTahunAjaranAktif()->id)
+            ->where('id_kelas', $kelas->id)
+            ->where('id_pelajaran', $pelajaran->id)
+            ->with('dataAbsensi')
+            ->get();
+
+        $kelas->load('siswa', 'siswa.siswa');
+
+
+        return view('guru.absensi.laporan', compact('kelas', 'pelajaran', 'absensi'));
+    }
 }

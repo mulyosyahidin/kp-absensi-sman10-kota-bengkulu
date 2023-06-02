@@ -94,6 +94,7 @@
                                                     <td>{{ $item->guruPelajaran->pelajaran->jenis == 'umum' ? 'Pelajaran Umum' : 'Pelajaran Jurusan' }}
                                                     </td>
                                                     <td class="text-end">
+                                                        <a href="{{ route('guru.absensi.laporan', ['kelas' => $kelas, 'pelajaran' => $item->guruPelajaran->pelajaran]) }}" class="btn btn-sm btn-info"><i class="fa fa-pie-chart"></i> Laporan</a>
                                                         <a href="{{ route('guru.absensi.pertemuan', ['kelas' => $kelas, 'pelajaran' => $item->guruPelajaran->pelajaran]) }}"
                                                             class="btn btn-success btn-sm">Absen <i
                                                                 class="fa fa-arrow-circle-right"></i></a>
