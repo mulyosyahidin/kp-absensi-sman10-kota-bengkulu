@@ -166,14 +166,14 @@
                                         <!--begin::Table body-->
                                         <tbody>
                                             @foreach ($kelas->siswa->where('id_tahun_ajaran', dataTahunAjaranAktif()->id) as $item)
-                                                @php(
-    $total = [
-        'hadir' => 0,
-        'izin' => 0,
-        'sakit' => 0,
-        'alpa' => 0,
-    ],
-)
+                                                @php
+                                                    $total = [
+                                                        'hadir' => 0,
+                                                        'izin' => 0,
+                                                        'sakit' => 0,
+                                                        'alpa' => 0,
+                                                    ];
+                                                @endphp
                                                 <tr>
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>{{ $item->siswa->nama }}</td>

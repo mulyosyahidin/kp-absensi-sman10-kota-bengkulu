@@ -31,14 +31,14 @@
     </thead>
     <tbody>
         @foreach ($kelas->siswa->where('id_tahun_ajaran', dataTahunAjaranAktif()->id) as $item)
-            @php(
-    $total = [
-        'hadir' => 0,
-        'izin' => 0,
-        'sakit' => 0,
-        'alpa' => 0,
-    ],
-)
+            @php
+                $total = [
+                    'hadir' => 0,
+                    'izin' => 0,
+                    'sakit' => 0,
+                    'alpa' => 0,
+                ];
+            @endphp
 
             <tr>
                 <td style="width: 20px;">{{ $loop->iteration }}</td>

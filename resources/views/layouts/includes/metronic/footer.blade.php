@@ -5,7 +5,7 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted fw-semibold me-1">2023&copy;</span>
-            <a href="{{ route('home') }}" target="_blank" class="text-gray-800 text-hover-primary">Cricket Watcher</a>
+            <a href="{{ route('home') }}" target="_blank" class="text-gray-800 text-hover-primary">SI Absensi SMA N 10 Kota Bengkulu</a>
         </div>
         <!--end::Copyright-->
     </div>
