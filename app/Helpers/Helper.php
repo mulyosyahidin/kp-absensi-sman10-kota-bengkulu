@@ -81,14 +81,19 @@ function kehadiranBadge($status)
 {
     if ($status == 'hadir') {
         return '<span class="badge badge-success">Hadir</span>';
-    }
-    else if ($status == 'izin') {
+    } else if ($status == 'izin') {
         return '<span class="badge badge-info">Izin</span>';
-    }
-    else if ($status == 'sakit') {
+    } else if ($status == 'sakit') {
         return '<span class="badge badge-warning">Sakit</span>';
-    }
-    else {
+    } else {
         return '<span class="badge badge-danger">Alpha</span>';
     }
+}
+
+function statusShort($status)
+{
+    //dapatkan huruf pertama dari status
+    $status = substr($status, 0, 1);
+
+    return strtoupper($status);
 }

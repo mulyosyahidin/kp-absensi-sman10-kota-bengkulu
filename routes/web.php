@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PelajaranController;
 use App\Http\Controllers\Guru\AbsensiController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\KelasController as GuruKelasController;
+use App\Http\Controllers\Guru\LaporanController;
 use App\Http\Controllers\Guru\PelajaranController as GuruPelajaranController;
 
 /*
@@ -40,7 +41,7 @@ Route::get('/dashboard', function () {
 })->middleware('auth');
 
 Route::middleware('auth')->group(function () {
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admin']], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('jurusan', JurusanController::class);
@@ -63,7 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('pelajaran', PelajaranController::class);
     });
 
-    Route::group(['prefix' => 'guru', 'as' => 'guru.'], function () {
+    Route::group(['prefix' => 'guru', 'as' => 'guru.', 'middleware' => ['role:guru']], function () {
         Route::get('/dashboard', [GuruDashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('pelajaran', GuruPelajaranController::class)->only(['index', 'show']);
@@ -75,6 +76,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/absensi/{absensi}/absensi', [AbsensiController::class, 'absensi'])->name('absensi.absensi');
         Route::post('/absensi/{absensi}/absensi', [AbsensiController::class, 'simpanAbsensi'])->name('absensi.simpan-absensi');
         Route::resource('absensi', AbsensiController::class);
+
+        Route::get('/laporan/{kelas}/download-kelas', [LaporanController::class, 'downloadLaporanKelas'])->name('laporan.kelas');
+        Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     });
 });
 
