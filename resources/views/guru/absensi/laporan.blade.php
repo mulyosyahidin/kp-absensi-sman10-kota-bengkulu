@@ -165,7 +165,7 @@
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
-                                            @forelse ($kelas->siswa->where('id_tahun_ajaran', dataTahunAjaranAktif()->id) as $item)
+                                            @foreach ($kelas->siswa->where('id_tahun_ajaran', dataTahunAjaranAktif()->id) as $item)
                                                 @php($total = [
                                                     'hadir' => 0,
                                                     'izin' => 0,
@@ -190,12 +190,8 @@
                                                     <td class="text-center">
                                                         {{ round($total['hadir'] / ($absensi->count() == 0 ? 1 : $absensi->count()) * 100, 2) }}
                                                     </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td>No data</td>
-                                                </tr>
-                                            @endforelse
+                                                </tr>                                                
+                                            @endforeach
                                     </table>
                                 </div>
                                 <!--end::Table-->
