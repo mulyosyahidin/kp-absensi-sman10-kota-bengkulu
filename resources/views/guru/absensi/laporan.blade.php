@@ -166,12 +166,14 @@
                                         <!--begin::Table body-->
                                         <tbody>
                                             @foreach ($kelas->siswa->where('id_tahun_ajaran', dataTahunAjaranAktif()->id) as $item)
-                                                @php($total = [
-                                                    'hadir' => 0,
-                                                    'izin' => 0,
-                                                    'sakit' => 0,
-                                                    'alpa' => 0,
-                                                ])
+                                                @php(
+    $total = [
+        'hadir' => 0,
+        'izin' => 0,
+        'sakit' => 0,
+        'alpa' => 0,
+    ],
+)
                                                 <tr>
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>{{ $item->siswa->nama }}</td>
@@ -179,7 +181,7 @@
                                                     @forelse ($absensi as $data)
                                                         @php($status = $data->dataAbsensi->where('id_siswa', $item->siswa->id)->first()?->status)
                                                         @php($total[$status]++)
-                                                        <td class=" text-center">{!! kehadiranBadge($status) !!}</td>
+                                                        <td class=" text-center">{!! attendanceBadge($status) !!}</td>
                                                     @empty
                                                         <td></td>
                                                     @endforelse
@@ -188,9 +190,9 @@
                                                     <td class="text-center">{{ $total['sakit'] }}</td>
                                                     <td class="text-center">{{ $total['alpa'] }}</td>
                                                     <td class="text-center">
-                                                        {{ round($total['hadir'] / ($absensi->count() == 0 ? 1 : $absensi->count()) * 100, 2) }}
+                                                        {{ round(($total['hadir'] / ($absensi->count() == 0 ? 1 : $absensi->count())) * 100, 2) }}
                                                     </td>
-                                                </tr>                                                
+                                                </tr>
                                             @endforeach
                                     </table>
                                 </div>

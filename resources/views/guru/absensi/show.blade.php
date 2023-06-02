@@ -197,7 +197,8 @@
                                             </div>
                                             <div class="card-footer text-center">
                                                 @foreach ($dataGrafik as $key => $count)
-                                                    <span class="badge badge-secondary">{{ $count }} {{ $key }}</span>
+                                                    <span class="badge badge-secondary">{{ $count }}
+                                                        {{ $key }}</span>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -207,7 +208,8 @@
                                         <div class="table-responsive">
                                             <!--begin::Table-->
                                             <table
-                                                class="table table-row-dashed table-hover table-striped table-bordered align-middle gs-0 gy-3 my-0" id="datatable">
+                                                class="table table-row-dashed table-hover table-striped table-bordered align-middle gs-0 gy-3 my-0"
+                                                id="datatable">
                                                 <!--begin::Table head-->
                                                 <thead>
                                                     <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
@@ -225,7 +227,7 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $item->siswa->nama }}</td>
                                                             <td>{{ $item->siswa->nisn }}</td>
-                                                            <td>{!! kehadiranBadge($item->status) !!}</td>
+                                                            <td>{!! attendanceBadge($item->status) !!}</td>
                                                         </tr>
                                                     @empty
                                                         <tr>

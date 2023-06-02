@@ -220,7 +220,7 @@
                     <!--begin::Menu wrapper-->
                     <div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="click"
                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        <img src="{{ getAvatar(auth()->user()->name) }}" alt="user" />
+                        <img src="{{ auth()->user()->getAvatarUrl() }}" alt="{{ auth()->user()->name }}" />
                     </div>
                     <!--begin::User account menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -230,7 +230,7 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="{{ getAvatar(auth()->user()->name) }}" />
+                                    <img alt="{{ auth()->user()->name }}" src="{{ auth()->user()->getAvatarUrl() }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
@@ -249,7 +249,10 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="" class="menu-link px-5">Profile</a>
+                            @if (auth()->user()->role == 'guru')
+                                <a href="{{ route('guru.profile.edit') }}" class="menu-link px-5">Profile</a>
+                            @else
+                            @endif
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->

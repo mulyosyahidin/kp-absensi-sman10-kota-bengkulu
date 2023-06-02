@@ -1,5 +1,5 @@
 @extends('layouts.metronic')
-@section('title', 'Tambah Data Guru')
+@section('title', $guru->nama . ' - Edit Profil')
 
 @section('content')
     <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Tambah Guru</h1>
+                        Edit Profil</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -27,31 +27,12 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.jurusan.index') }}" class="text-muted text-hover-primary">Guru</a>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Guru Baru</li>
+                        <li class="breadcrumb-item text-muted">Edit Profil</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
                 </div>
                 <!--end::Page title-->
-                <!--begin::Actions-->
-                <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <!--begin::Primary button-->
-                    <a href="{{ route('admin.jurusan.index') }}" class="btn btn-sm fw-bold btn-primary">
-                        Kembali
-                    </a>
-                    <!--end::Primary button-->
-                </div>
-                <!--end::Actions-->
             </div>
             <!--end::Toolbar container-->
         </div>
@@ -64,8 +45,9 @@
                 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                     <!--begin::Col-->
                     <div class="col-12">
-                        <form action="{{ route('admin.guru.store') }}" method="POST">
+                        <form action="{{ route('guru.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
 
                             <!--begin::Tables widget 14-->
                             <div class="card">
@@ -73,7 +55,7 @@
                                 <div class="card-header border-0">
                                     <!--begin::Card title-->
                                     <div class="card-title m-0">
-                                        <h3 class="fw-bold m-0">Tambah Guru Baru</h3>
+                                        <h3 class="fw-bold m-0">Edit Profil</h3>
                                     </div>
                                     <!--end::Card title-->
                                 </div>
@@ -92,7 +74,7 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="nama" value="{{ old('nama') }}"
+                                                <input type="text" name="nama" value="{{ old('nama', $guru->nama) }}"
                                                     class="form-control @error('nama') is-invalid @enderror" required>
                                                 <!--end::Input-->
 
@@ -113,7 +95,8 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="username" value="{{ old('username') }}"
+                                                <input type="text" name="username"
+                                                    value="{{ old('username', $guru->user->username) }}"
                                                     class="form-control @error('username') is-invalid @enderror" required>
                                                 <!--end::Input-->
 
@@ -137,7 +120,8 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="email" name="email" value="{{ old('email') }}"
+                                                <input type="email" name="email"
+                                                    value="{{ old('email', $guru->user->email) }}"
                                                     class="form-control @error('email') is-invalid @enderror" required>
                                                 <!--end::Input-->
 
@@ -159,8 +143,11 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="password" name="password"
-                                                    class="form-control @error('password') is-invalid @enderror" required>
+                                                    class="form-control @error('password') is-invalid @enderror">
                                                 <!--end::Input-->
+
+                                                <small class="text-muted">Masukan password baru jika ingin mengganti
+                                                    password lama.</small>
 
                                                 @error('password')
                                                     <div class="invalid-feedback">
@@ -171,6 +158,26 @@
                                             <!--end::Input group-->
                                         </div>
                                     </div>
+
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-semibold form-label mt-3">
+                                            <span>Foto Profil</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="file" name="picture"
+                                            class="form-control @error('picture') is-invalid @enderror">
+                                        <!--end::Input-->
+
+                                        @error('picture')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <!--end::Input group-->
 
                                     <h4>Data Guru</h4>
                                     <div class="row">
@@ -183,7 +190,7 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="nip" value="{{ old('nip') }}"
+                                                <input type="text" name="nip" value="{{ old('nip', $guru->nip) }}"
                                                     class="form-control @error('nip') is-invalid @enderror">
                                                 <!--end::Input-->
 
@@ -204,7 +211,8 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="nuptk" value="{{ old('nuptk') }}"
+                                                <input type="text" name="nuptk"
+                                                    value="{{ old('nuptk', $guru->nuptk) }}"
                                                     class="form-control @error('nuptk') is-invalid @enderror">
                                                 <!--end::Input-->
 
@@ -228,7 +236,8 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}"
+                                                <input type="text" name="tempat_lahir"
+                                                    value="{{ old('tempat_lahir', $guru->tempat_lahir) }}"
                                                     class="form-control @error('tempat_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
@@ -250,7 +259,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="date" name="tanggal_lahir"
-                                                    value="{{ old('tanggal_lahir') }}"
+                                                    value="{{ old('tanggal_lahir', $guru->tanggal_lahir?->format('Y-m-d')) }}"
                                                     class="form-control @error('tanggal_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
@@ -278,9 +287,10 @@
                                                     class="2select form-control @error('jenis_kelamin') is-invalid @enderror">
                                                     <option value="">Pilih Jenis Kelamin</option>
                                                     <option value="L"
-                                                        @if (old('jenis_kelamin') == 'L') selected @endif>Laki-laki</option>
+                                                        @if (old('jenis_kelamin', $guru->jenis_kelamin) == 'L') selected @endif>Laki-laki
+                                                    </option>
                                                     <option value="P"
-                                                        @if (old('jenis_kelamin') == 'P') selected @endif>Perempuan
+                                                        @if (old('jenis_kelamin', $guru->jenis_kelamin) == 'P') selected @endif>Perempuan
                                                     </option>
                                                 </select>
                                                 <!--end::Input-->
@@ -306,21 +316,21 @@
                                                     class="2select form-control @error('agama') is-invalid @enderror">
                                                     <option selected disabled>Pilih Agama</option>
                                                     <option value="Islam"
-                                                        @if (old('agama') == 'Islam') selected @endif>Islam</option>
+                                                        @if (old('agama', $guru->agama) == 'Islam') selected @endif>Islam</option>
                                                     <option value="Kristen"
-                                                        @if (old('agama') == 'Kristen') selected @endif>Kristen</option>
+                                                        @if (old('agama', $guru->agama) == 'Kristen') selected @endif>Kristen</option>
                                                     <option value="Protestan"
-                                                        @if (old('agama') == 'Protestan') selected @endif>Protestan
+                                                        @if (old('agama', $guru->agama) == 'Protestan') selected @endif>Protestan
                                                     </option>
                                                     <option value="Hindu"
-                                                        @if (old('agama') == 'Hindu') selected @endif>Hindu</option>
+                                                        @if (old('agama', $guru->agama) == 'Hindu') selected @endif>Hindu</option>
                                                     <option value="Buddha"
-                                                        @if (old('agama') == 'Buddha') selected @endif>Buddha</option>
+                                                        @if (old('agama', $guru->agama) == 'Buddha') selected @endif>Buddha</option>
                                                     <option value="Kong Hu Chu"
-                                                        @if (old('agama') == 'Kong Hu Chu') selected @endif>Kong Hu Chu
+                                                        @if (old('agama', $guru->agama) == 'Kong Hu Chu') selected @endif>Kong Hu Chu
                                                     </option>
                                                     <option value="Lainnya"
-                                                        @if (old('agama') == 'Lainnya') selected @endif>Lainnya</option>
+                                                        @if (old('agama', $guru->agama) == 'Lainnya') selected @endif>Lainnya</option>
                                                 </select>
                                                 <!--end::Input-->
 
@@ -342,7 +352,7 @@
                                         </label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat', $guru->alamat) }}</textarea>
+                                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat') }}</textarea>
                                         <!--end::Input-->
 
                                         @error('alamat')

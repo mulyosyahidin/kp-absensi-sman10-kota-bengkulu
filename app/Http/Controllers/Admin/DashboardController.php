@@ -9,6 +9,15 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $count = [
+            'jurusan' => \App\Models\Jurusan::count(),
+            'kelas' => \App\Models\Kelas::count(),
+            'guru' => \App\Models\Guru::count(),
+            'siswa' => \App\Models\Siswa::count(),
+            'pelajaran' => \App\Models\Pelajaran::count(),
+            'absensi' => \App\Models\Absensi::count(),
+        ];
+
+        return view('admin.dashboard', compact('count'));
     }
 }

@@ -227,7 +227,7 @@
                                                 </select>
                                                 <!--end::Input-->
 
-                                                @error('nip')
+                                                @error('jenis_kelamin')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -244,7 +244,7 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <select name="agama" id="jenis-kelamin"
+                                                <select name="agama" id="agama"
                                                     class="2select form-control @error('agama') is-invalid @enderror">
                                                     <option selected disabled>Pilih Agama</option>
                                                     <option value="Islam"

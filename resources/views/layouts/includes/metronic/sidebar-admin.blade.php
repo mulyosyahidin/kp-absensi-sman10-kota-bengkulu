@@ -134,7 +134,8 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link {{ activeClass('admin.pelajaran.*') }}" href="{{ route('admin.pelajaran.index') }}">
+                    <a class="menu-link {{ activeClass('admin.pelajaran.*') }}"
+                        href="{{ route('admin.pelajaran.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/Layout/Layout-horizontal.svg-->

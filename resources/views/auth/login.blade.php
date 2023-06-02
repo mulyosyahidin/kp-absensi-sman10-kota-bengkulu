@@ -77,11 +77,11 @@ License: For each use you must have a valid license purchased only from above li
                 <div class="d-flex flex-center flex-lg-start flex-column">
                     <!--begin::Logo-->
                     <a href="{{ route('home') }}" class="mb-7">
-                        <img alt="Logo" src="{{ asset('assets/images/logo.png') }}" style="width: 20%; margin-bottom: -20px" />
+                        <img alt="Logo" src="{{ asset('assets/images/logo.png') }}" style="width: 15%; margin-bottom: -20px" />
                     </a>
                     <!--end::Logo-->
                     <!--begin::Title-->
-                    <h6 class="text-white fw-normal m-0">&nbsp;&nbsp;Sistem Informasi Absensi SMA N 10 Kota Bengkulu</h6>
+                    <h4 class="text-white fw-normal mt-3">Sistem Informasi Absensi SMA N 10 Kota Bengkulu</h4>
                     <!--end::Title-->
                 </div>
                 <!--begin::Aside-->

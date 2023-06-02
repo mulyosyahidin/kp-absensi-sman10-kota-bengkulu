@@ -51,6 +51,11 @@ if (!function_exists('getAvatar')) {
 }
 
 if (!function_exists('tahunAjaranAktif')) {
+    /**
+     * Menampilkan informasi tahun ajaran aktif
+     * 
+     * @return string
+     */
     function tahunAjaranAktif()
     {
         $data = \App\Models\Tahun_ajaran::where('aktif', 1)->first();
@@ -69,6 +74,11 @@ if (!function_exists('tahunAjaranAktif')) {
 }
 
 if (!function_exists('dataTahunAjaranAktif')) {
+    /**
+     * Mendapatkan informasi data tahun ajaran aktif
+     * 
+     * @return object
+     */
     function dataTahunAjaranAktif()
     {
         $data = \App\Models\Tahun_ajaran::where('aktif', 1)->first();
@@ -77,23 +87,39 @@ if (!function_exists('dataTahunAjaranAktif')) {
     }
 }
 
-function kehadiranBadge($status)
-{
-    if ($status == 'hadir') {
-        return '<span class="badge badge-success">Hadir</span>';
-    } else if ($status == 'izin') {
-        return '<span class="badge badge-info">Izin</span>';
-    } else if ($status == 'sakit') {
-        return '<span class="badge badge-warning">Sakit</span>';
-    } else {
-        return '<span class="badge badge-danger">Alpha</span>';
+if (!function_exists('attendanceBadge')) {
+    /**
+     * Return badge for attendance status
+     * 
+     * @param string $status
+     * @return string
+     */
+    function attendanceBadge($status)
+    {
+        if ($status == 'hadir') {
+            return '<span class="badge badge-success">Hadir</span>';
+        } else if ($status == 'izin') {
+            return '<span class="badge badge-info">Izin</span>';
+        } else if ($status == 'sakit') {
+            return '<span class="badge badge-warning">Sakit</span>';
+        } else {
+            return '<span class="badge badge-danger">Alpha</span>';
+        }
     }
 }
 
-function statusShort($status)
-{
-    //dapatkan huruf pertama dari status
-    $status = substr($status, 0, 1);
+if (!function_exists('statusShortName')) {
+    /**
+     * Mendapatkan huruf pertama status absensi
+     * 
+     * @param string $status
+     * @return string
+     */
+    function statusShortName($status)
+    {
+        //dapatkan huruf pertama dari status
+        $status = substr($status, 0, 1);
 
-    return strtoupper($status);
+        return strtoupper($status);
+    }
 }

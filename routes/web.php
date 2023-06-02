@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\SiswaController;
-use App\Http\Controllers\Admin\TahunAjaranController;
+use App\Http\Controllers\Guru\AbsensiController;
+use App\Http\Controllers\Guru\LaporanController;
+use App\Http\Controllers\Guru\ProfileController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PelajaranController;
-use App\Http\Controllers\Guru\AbsensiController;
-use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
+use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Guru\KelasController as GuruKelasController;
-use App\Http\Controllers\Guru\LaporanController;
+use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\PelajaranController as GuruPelajaranController;
 
 /*
@@ -79,13 +79,10 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/laporan/{kelas}/download-kelas', [LaporanController::class, 'downloadLaporanKelas'])->name('laporan.kelas');
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-    });
-});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    });
 });
 
 require __DIR__ . '/auth.php';
