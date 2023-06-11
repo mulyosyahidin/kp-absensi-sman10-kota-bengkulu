@@ -24,7 +24,6 @@ class Pelajaran extends Model
     protected $fillable = [
         'nama',
         'tingkat',
-        'jenis',
     ];
 
     /**

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Guru;
-use App\Models\Guru_pelajaran;
 use App\Models\Kelas;
 use App\Models\Pelajaran;
 use App\Models\Tahun_ajaran;
 use Illuminate\Http\Request;
+use App\Models\Guru_pelajaran;
+use App\Http\Controllers\Controller;
+use App\Imports\PelajaranImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PelajaranController extends Controller
 {
@@ -38,7 +40,6 @@ class PelajaranController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'tingkat' => 'required|integer',
-            'jenis' => 'required|string|max:255|in:umum,jurusan',
         ]);
 
         Pelajaran::create($request->all());
@@ -74,7 +75,6 @@ class PelajaranController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'tingkat' => 'required|integer',
-            'jenis' => 'required|string|max:255|in:umum,jurusan',
         ]);
 
         $pelajaran->update($request->all());
@@ -140,5 +140,19 @@ class PelajaranController extends Controller
         return redirect()
             ->route('admin.pelajaran.show', $pelajaran)
             ->withSuccess('Berhasil menambah guru pelajaran');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+        Excel::import(new PelajaranImport, $file);
+
+        return redirect()
+            ->route('admin.pelajaran.index')
+            ->withSuccess('Data pelajaran berhasil diimport.');
     }
 }

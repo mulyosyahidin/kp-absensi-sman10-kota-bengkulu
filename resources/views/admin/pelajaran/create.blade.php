@@ -81,39 +81,40 @@
                                 <!--begin::Card header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-6 border-top">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold form-label mt-3">
-                                            <span>Nama</span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="nama" value="{{ old('nama') }}"
-                                            class="form-control @error('nama') is-invalid @enderror" required>
-                                        <!--end::Input-->
-
-                                        @error('nama')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <!--end::Input group-->
-
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <!--begin::Input group-->
                                             <div class="fv-row mb-7">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span>Tingkat</span>
+                                                    <span>Nama</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="nama" value="{{ old('nama') }}"
+                                                    class="form-control @error('nama') is-invalid @enderror" required>
+                                                <!--end::Input-->
+
+                                                @error('nama')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>Kelas</span>
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <select name="tingkat" id="tingkat"
                                                     class="form-control 2select @error('tingkat') is-invalid @enderror">
-                                                    <option selected disabled>Pilih Tingkat</option>
+                                                    <option selected disabled>Pilih Kelas</option>
                                                     <option value="1"
                                                         @if (old('tingkat') == '1') selected @endif>X
                                                     </option>
@@ -127,37 +128,6 @@
                                                 <!--end::Input-->
 
                                                 @error('tingkat')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <!--end::Input group-->
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span>Jenis</span>
-                                                </label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <select name="jenis" id="jenis"
-                                                    class="form-control 2select @error('jenis') is-invalid @enderror">
-                                                    <option selected disabled>Pilih Jenis Pelajaran</option>
-                                                    <option value="umum"
-                                                        @if (old('jenis') == 'umum') selected @endif>
-                                                        Pelajaran Umum
-                                                    </option>
-                                                    <option value="jurusan"
-                                                        @if (old('jenis') == 'jurusan') selected @endif>
-                                                        Pelajaran Jurusan
-                                                    </option>
-                                                </select>
-                                                <!--end::Input-->
-
-                                                @error('jenis')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>

@@ -94,15 +94,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tingkat</td>
+                                            <td>Kelas</td>
                                             <td>
                                                 <strong>{{ $pelajaran->tingkat }}</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenis</td>
-                                            <td>
-                                                <strong>{{ $pelajaran->jenis == 'umum' ? 'Pelajaran Umum' : 'Pelajaran Penjurusan' }}</strong>
                                             </td>
                                         </tr>
                                     </tbody>
