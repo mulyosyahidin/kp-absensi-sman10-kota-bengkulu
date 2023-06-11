@@ -177,9 +177,13 @@
                             @enderror
                         </div>
                         <!--end::Input group-->
+
+                        <small class="text-muted">
+                            <a href="{{ asset('assets/static/GURU.xlsx') }}"><i class="fa fa-download"></i> Download template Excel.</a>
+                        </small>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Import</button>
                     </div>
                 </form>
