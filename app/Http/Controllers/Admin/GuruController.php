@@ -6,7 +6,9 @@ use App\Models\Guru;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Imports\GuruImport;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GuruController extends Controller
 {
@@ -132,5 +134,19 @@ class GuruController extends Controller
         return redirect()
             ->route('admin.guru.index')
             ->withSuccess('Berhasil menghapus guru.');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+        Excel::import(new GuruImport, $file);
+
+        return redirect()
+            ->route('admin.guru.index')
+            ->withSuccess('Data guru berhasil diimport.');
     }
 }

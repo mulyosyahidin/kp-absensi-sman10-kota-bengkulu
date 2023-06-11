@@ -75,8 +75,7 @@
                 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                     <!--begin::Col-->
                     <div class="col-12">
-                        <form action="{{ route('admin.guru.update', $guru) }}" method="POST"
-                           >
+                        <form action="{{ route('admin.guru.update', $guru) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -124,7 +123,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="nip" value="{{ old('nip', $guru->nip) }}"
-                                                    class="form-control @error('nip') is-invalid @enderror" required>
+                                                    class="form-control @error('nip') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('nip')
@@ -144,7 +143,8 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="nuptk" value="{{ old('nuptk', $guru->nuptk) }}"
+                                                <input type="text" name="nuptk"
+                                                    value="{{ old('nuptk', $guru->nuptk) }}"
                                                     class="form-control @error('nuptk') is-invalid @enderror">
                                                 <!--end::Input-->
 
@@ -168,9 +168,9 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $guru->tempat_lahir) }}"
-                                                    class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                                    required>
+                                                <input type="text" name="tempat_lahir"
+                                                    value="{{ old('tempat_lahir', $guru->tempat_lahir) }}"
+                                                    class="form-control @error('tempat_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('tempat_lahir')
@@ -192,8 +192,7 @@
                                                 <!--begin::Input-->
                                                 <input type="date" name="tanggal_lahir"
                                                     value="{{ old('tanggal_lahir', $guru->tanggal_lahir?->format('Y-m-d')) }}"
-                                                    class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                                    required>
+                                                    class="form-control @error('tanggal_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('tanggal_lahir')

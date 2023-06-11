@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('kelas', KelasController::class);
 
         Route::resource('tahun-ajaran', TahunAjaranController::class);
+
+        Route::post('/guru/import', [GuruController::class, 'import'])->name('guru.import');
         Route::resource('guru', GuruController::class);
 
         Route::get('/siswa/{siswa}/kelas', [SiswaController::class, 'kelas'])->name('siswa.kelas.select');
