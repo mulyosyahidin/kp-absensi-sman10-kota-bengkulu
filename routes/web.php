@@ -10,6 +10,7 @@ use App\Http\Controllers\Guru\ProfileController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PelajaranController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Guru\KelasController as GuruKelasController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
@@ -67,6 +68,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('/pelajaran/{pelajaran}/guru/{guru}', [PelajaranController::class, 'hapusGuru'])->name('pelajaran.guru.hapus-guru');
         Route::post('/pelajaran/import', [PelajaranController::class, 'import'])->name('pelajaran.import');
         Route::resource('pelajaran', PelajaranController::class);
+
+        Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
     });
 
     Route::group(['prefix' => 'guru', 'as' => 'guru.', 'middleware' => ['role:guru']], function () {

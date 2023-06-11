@@ -230,7 +230,8 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="{{ auth()->user()->name }}" src="{{ auth()->user()->getAvatarUrl() }}" />
+                                    <img alt="{{ auth()->user()->name }}"
+                                        src="{{ auth()->user()->getAvatarUrl() }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
@@ -255,6 +256,14 @@
                             @endif
                         </div>
                         <!--end::Menu item-->
+                        @if (auth()->user()->role == 'admin')
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-5">
+                                <a href="{{ route('admin.profile.edit') }}"
+                                    class="menu-link px-5">Profile</a>
+                            </div>
+                            <!--end::Menu item-->
+                        @endif
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="#" class="menu-link px-5 logout-link">Sign Out</a>
