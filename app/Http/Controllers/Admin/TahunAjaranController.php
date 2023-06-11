@@ -115,4 +115,16 @@ class TahunAjaranController extends Controller
             ->route('admin.tahun-ajaran.index')
             ->withSuccess('Tahun ajaran berhasil dihapus');
     }
+
+    public function jadikanAktif(Tahun_ajaran $tahun_ajaran)
+    {
+        Tahun_ajaran::where('id', '!=', $tahun_ajaran->id)
+            ->update(['aktif' => false]);
+
+        $tahun_ajaran->update(['aktif' => true]);
+
+        return redirect()
+            ->back()
+            ->withSuccess('Tahun ajaran berhasil dijadikan aktif');
+    }
 }

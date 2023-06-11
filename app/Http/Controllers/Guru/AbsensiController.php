@@ -22,6 +22,9 @@ class AbsensiController extends Controller
             ->whereHas('guruPelajaran', function ($query) {
                 $query->where('id_guru', auth()->user()->guru->id);
             })
+            ->whereHas('guruPelajaran.tahunAjaran', function ($query) {
+                $query->where('id', dataTahunAjaranAktif()->id);
+            })
             ->groupBy('id_kelas')
             ->orderBy(function ($query) {
                 $query->select('nama')
@@ -75,7 +78,7 @@ class AbsensiController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'deskripsi' => 'nullable|string',
             'pertemuan_ke' => 'required|numeric',
             'tanggal' => 'required|date',
         ]);
@@ -132,7 +135,7 @@ class AbsensiController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'deskripsi' => 'nullable|string',
             'pertemuan_ke' => 'required|numeric',
             'tanggal' => 'required|date',
         ]);

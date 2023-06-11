@@ -57,7 +57,8 @@
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-6">
-                                    {{ $item->kelas->siswa->count() }} Siswa
+                                    {{ $item->kelas->siswa()->where('id_tahun_ajaran', dataTahunAjaranAktif()->id)->count() }}
+                                    Siswa
 
                                     <ol class="list-group mt-3">
                                         @forelse ($item->kelas->pelajaran->where('guruPelajaran.id_guru', auth()->user()->guru->id) as $data)
@@ -74,6 +75,11 @@
                             </div>
                         </div>
                     @empty
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                Tidak ada data kelas yang diampu pada semester tahun ajaran ini.
+                            </div>
+                        </div>
                     @endforelse
                 </div>
                 <!--end::Row-->

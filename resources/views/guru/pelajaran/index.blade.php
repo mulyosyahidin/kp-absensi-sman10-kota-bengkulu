@@ -68,7 +68,6 @@
                                                 <th>#</th>
                                                 <th>Nama</th>
                                                 <th>Tingkat</th>
-                                                <th>Jenis</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -80,7 +79,6 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->pelajaran->nama }}</td>
                                                     <td>{{ $item->pelajaran->tingkat }}</td>
-                                                    <td>{{ $item->pelajaran->jenis == 'umum' ? 'Pelajaran Umum' : 'Pelajaran Jurusan' }}
                                                     </td>
                                                     <td class="text-end">
                                                         <a href="{{ route('guru.pelajaran.show', $item->pelajaran) }}"

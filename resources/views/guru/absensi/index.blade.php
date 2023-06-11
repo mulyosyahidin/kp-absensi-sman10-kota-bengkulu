@@ -70,6 +70,11 @@
                             </div>
                         </div>
                     @empty
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                Tidak ada data kelas yang diampu pada semester tahun ajaran ini.
+                            </div>
+                        </div>
                     @endforelse
                 </div>
                 <!--end::Row-->

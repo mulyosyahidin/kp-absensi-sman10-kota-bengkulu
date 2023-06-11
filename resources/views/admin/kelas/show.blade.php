@@ -209,7 +209,8 @@
                                 </h3>
                                 <!--end::Title-->
 
-                                <a href="{{ route('admin.kelas.siswa.select', $kela) }}" class="btn btn-sm btn-info" style="height: 35px;">
+                                <a href="{{ route('admin.kelas.siswa.select', $kela) }}" class="btn btn-sm btn-info"
+                                    style="height: 35px;">
                                     <i class="fa fa-user"></i> Siswa
                                 </a>
                             </div>
@@ -234,7 +235,7 @@
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
-                                            @foreach ($kela->siswa->where('id_tahun_ajaran', $tahunAjaranAktif->id) as $item)
+                                            @forelse ($kela->siswa->where('id_tahun_ajaran', $tahunAjaranAktif->id) as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->tahunAjaran->tahun_ajaran }}
@@ -245,7 +246,11 @@
                                                     <td>{{ $item->siswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td>No data</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                         <!--end::Table body-->
                                     </table>

@@ -127,6 +127,11 @@
                             <!--end: Card Body-->
                             <!--begin::Footer-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9 gap-2">
+                                @if (!$tahun_ajaran->aktif)
+                                    <a href="{{ route('admin.tahun-ajaran.jadikan-aktif', $tahun_ajaran) }}"
+                                        class="btn btn-sm btn-secondary"><i class="fa fa-check"></i>
+                                        Jadikan Aktif</a>
+                                @endif
                                 <a href="{{ route('admin.tahun-ajaran.edit', $tahun_ajaran) }}"
                                     class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i>

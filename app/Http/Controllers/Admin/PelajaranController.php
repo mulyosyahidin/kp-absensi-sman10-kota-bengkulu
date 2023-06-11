@@ -126,7 +126,7 @@ class PelajaranController extends Controller
         }
 
         $dataGuruPengampu = collect($dataGuruPengampu);
-        
+
         return view('admin.pelajaran.guru', compact('pelajaran', 'guru', 'kelas', 'dataGuruPengampu', 'kelasSudahDiampu'));
     }
 

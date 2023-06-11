@@ -101,6 +101,12 @@
                                                         @endif
                                                     </td>
                                                     <td class="text-end">
+                                                        @if (!$item->aktif)
+                                                            <a href="{{ route('admin.tahun-ajaran.jadikan-aktif', $item) }}" class="btn btn-sm btn-secondary"
+                                                                data-bs-toggle="tooltip"
+                                                                title="Jadikan tahun pelajaran aktif"><i
+                                                                    class="fa fa-check"></i></a>
+                                                        @endif
                                                         <a href="{{ route('admin.tahun-ajaran.show', $item) }}"
                                                             class="btn btn-sm btn-success">
                                                             <i class="fa fa-eye"></i>

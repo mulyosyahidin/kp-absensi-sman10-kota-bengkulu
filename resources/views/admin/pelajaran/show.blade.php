@@ -154,7 +154,7 @@
                                         <!--end::Table head-->
                                         <!--begin::Table body-->
                                         <tbody>
-                                            @foreach ($pelajaran->guru->groupBy('id_guru') as $item)
+                                            @forelse ($pelajaran->guru->where('id_tahun_ajaran', dataTahunAjaranAktif()->id)->groupBy('id_guru') as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->first()->guru->nama }}</td>
@@ -174,7 +174,11 @@
                                                                 class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td>No data</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                         <!--end::Table body-->
                                     </table>

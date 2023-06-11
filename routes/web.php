@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/kelas/{kela}/siswa', [KelasController::class, 'updateSiswa'])->name('kelas.siswa.update');
         Route::resource('kelas', KelasController::class);
 
+        Route::get('/tahun-ajaran/{tahun_ajaran}/jadikan-aktif', [TahunAjaranController::class, 'jadikanAktif'])->name('tahun-ajaran.jadikan-aktif');
         Route::resource('tahun-ajaran', TahunAjaranController::class);
 
         Route::post('/guru/import', [GuruController::class, 'import'])->name('guru.import');

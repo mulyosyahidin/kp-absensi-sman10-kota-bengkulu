@@ -19,6 +19,9 @@ class KelasController extends Controller
             ->whereHas('guruPelajaran', function ($query) {
                 $query->where('id_guru', auth()->user()->guru->id);
             })
+            ->whereHas('guruPelajaran.tahunAjaran', function ($query) {
+                $query->where('id', dataTahunAjaranAktif()->id);
+            })
             ->groupBy('id_kelas')
             ->orderBy(function ($query) {
                 $query->select('nama')

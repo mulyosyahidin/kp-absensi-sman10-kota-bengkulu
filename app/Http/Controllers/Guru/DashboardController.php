@@ -16,7 +16,11 @@ class DashboardController extends Controller
             'pelajaran' => Guru_pelajaran::where('id_guru', auth()->user()->guru->id)->where('id_tahun_ajaran', dataTahunAjaranAktif()->id)->count(),
             'kelas' => Guru_pelajaran_kelas::whereHas('guruPelajaran', function ($query) {
                 $query->where('id_guru', auth()->user()->guru->id);
-            })->count(),
+            })
+                ->whereHas('guruPelajaran.tahunAjaran', function ($query) {
+                    $query->where('id', dataTahunAjaranAktif()->id);
+                })
+                ->count(),
             'absensi' => Absensi::where('id_tahun_ajaran', dataTahunAjaranAktif()->id)->where('id_guru', auth()->user()->guru->id)->count(),
         ];
 
@@ -24,6 +28,9 @@ class DashboardController extends Controller
             ->with('guruPelajaran', 'kelas', 'kelas.jurusan')
             ->whereHas('guruPelajaran', function ($query) {
                 $query->where('id_guru', auth()->user()->guru->id);
+            })
+            ->whereHas('guruPelajaran.tahunAjaran', function ($query) {
+                $query->where('id', dataTahunAjaranAktif()->id);
             })
             ->groupBy('id_kelas')
             ->orderBy(function ($query) {
@@ -37,6 +44,7 @@ class DashboardController extends Controller
             ->get();
 
         $absensi = Absensi::with('kelas')
+            ->where('id_tahun_ajaran', dataTahunAjaranAktif()->id)
             ->take(5)
             ->latest()
             ->get();
