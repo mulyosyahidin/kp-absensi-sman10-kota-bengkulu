@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Kelas;
-use App\Models\Kelas_siswa;
 use App\Models\Siswa;
+use App\Models\Kelas_siswa;
+use App\Imports\SiswaImport;
 use App\Models\Tahun_ajaran;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -37,7 +39,6 @@ class SiswaController extends Controller
         $request->validate([
             'nama' => 'required',
             'nis' => 'nullable|unique:siswa,nis|max:4',
-            'nisn' => 'nullable|unique:siswa,nisn|max:9',
             'tempat_lahir' => 'nullable',
             'tanggal_lahir' => 'nullable|date',
             'jenis_kelamin' => 'nullable|in:L,P',
@@ -76,7 +77,6 @@ class SiswaController extends Controller
         $request->validate([
             'nama' => 'required',
             'nis' => 'nullable|numeric|unique:siswa,nis,' . $siswa->id,
-            'nisn' => 'nullable|numeric|unique:siswa,nisn,' . $siswa->id,
             'tempat_lahir' => 'nullable',
             'tanggal_lahir' => 'nullable|date',
             'jenis_kelamin' => 'nullable|in:L,P',
@@ -148,5 +148,19 @@ class SiswaController extends Controller
         return redirect()
             ->route('admin.siswa.show', $siswa)
             ->withSuccess('Kelas berhasil diperbarui.');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+        Excel::import(new SiswaImport, $file);
+
+        return redirect()
+            ->route('admin.siswa.index')
+            ->withSuccess('Data siswa berhasil diimport.');
     }
 }

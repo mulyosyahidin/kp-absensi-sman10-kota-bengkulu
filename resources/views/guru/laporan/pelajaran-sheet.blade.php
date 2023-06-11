@@ -3,7 +3,7 @@
         <tr>
             <th rowspan="2" style="font-weight: bold; vertical-align: middle; font-size: 13px;">#</th>
             <th rowspan="2" style="font-weight: bold; vertical-align: middle; font-size: 13px;">NAMA</th>
-            <th rowspan="2" style="font-weight: bold; vertical-align: middle; font-size: 13px;">NISN</th>
+            <th rowspan="2" style="font-weight: bold; vertical-align: middle; font-size: 13px;">NIS</th>
             <th rowspan="2" style="font-weight: bold; text-align: center; vertical-align: middle; font-size: 13px;">L/P
             </th>
             <th colspan="{{ $absensi->count() }}"
@@ -43,7 +43,7 @@
             <tr>
                 <td style="width: 20px;">{{ $loop->iteration }}</td>
                 <td style="width: 300px">{{ ucwords(strtolower($item->siswa->nama)) }}</td>
-                <td style="width: 100px">{{ $item->siswa->nisn }}</td>
+                <td style="width: 100px">{{ $item->siswa->nis }}</td>
                 <td style="text-align: center;">{{ $item->siswa->jenis_kelamin }}</td>
                 @forelse ($absensi as $data)
                     @php($status = $data->dataAbsensi->where('id_siswa', $item->siswa->id)->first()?->status)

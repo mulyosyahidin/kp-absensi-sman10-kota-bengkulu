@@ -142,7 +142,7 @@
                                             <tr>
                                                 <th rowspan="2" class="text-center">#</th>
                                                 <th rowspan="2">Nama</th>
-                                                <th rowspan="2">NISN</th>
+                                                <th rowspan="2">NIS</th>
                                                 <th colspan="{{ $absensi->count() }}" class="text-center">Pertemuan
                                                 </th>
                                                 <th colspan="4" class="text-center">Total</th>
@@ -177,7 +177,7 @@
                                                 <tr>
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>{{ $item->siswa->nama }}</td>
-                                                    <td>{{ $item->siswa->nisn }}</td>
+                                                    <td>{{ $item->siswa->nis }}</td>
                                                     @forelse ($absensi as $data)
                                                         @php($status = $data->dataAbsensi->where('id_siswa', $item->siswa->id)->first()?->status)
                                                         @php($total[$status]++)

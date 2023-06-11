@@ -36,6 +36,11 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#import-modal"
+                        class="btn btn-sm fw-bold btn-info">
+                        Import
+                    </a>
+
                     <a href="{{ route('admin.siswa.create') }}" class="btn btn-sm fw-bold btn-primary">
                         Tambah
                     </a>
@@ -77,7 +82,6 @@
                                                 <th>#</th>
                                                 <th>Nama</th>
                                                 <th>NIS</th>
-                                                <th>NISN</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -89,7 +93,6 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->nama }}</td>
                                                     <td>{{ $item->nis }}</td>
-                                                    <td>{{ $item->nisn }}</td>
                                                     <td class="text-end">
                                                         <a href="{{ route('admin.siswa.show', $item) }}"
                                                             class="btn btn-sm btn-success">
@@ -141,6 +144,48 @@
         @csrf
         @method('DELETE')
     </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="import-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Import Data Siswa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('admin.siswa.import') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="modal-body">
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="fs-6 fw-semibold form-label mt-3">
+                                <span>File</span>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="file" name="file" class="form-control @error('file') is-invalid @enderror"
+                                required>
+                            <!--end::Input-->
+
+                            @error('file')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Input group-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @push('custom_js')

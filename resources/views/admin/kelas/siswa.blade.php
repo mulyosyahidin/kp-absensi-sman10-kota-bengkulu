@@ -90,7 +90,7 @@
                                                 <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
                                                     <th>#</th>
                                                     <th>Nama</th>
-                                                    <th>NISN</th>
+                                                    <th>NIS</th>
                                                     <th>Jenis Kelamin</th>
                                                 </tr>
                                             </thead>
@@ -110,7 +110,7 @@
                                                             <label
                                                                 for="siswa-{{ $item->id }}">{{ $item->nama }}</label>
                                                         </td>
-                                                        <td>{{ $item->nisn }}</td>
+                                                        <td>{{ $item->nis }}</td>
                                                         <td>{{ $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
                                                         </td>
                                                     </tr>

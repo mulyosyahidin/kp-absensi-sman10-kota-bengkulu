@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/siswa/{siswa}/kelas', [SiswaController::class, 'kelas'])->name('siswa.kelas.select');
         Route::put('/siswa/{siswa}/kelas', [SiswaController::class, 'updateKelas'])->name('siswa.kelas.update');
+        Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
         Route::resource('siswa', SiswaController::class);
 
         Route::get('/pelajaran/{pelajaran}/guru', [PelajaranController::class, 'guru'])->name('pelajaran.guru.select');

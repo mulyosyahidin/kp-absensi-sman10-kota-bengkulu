@@ -90,211 +90,192 @@
                                     <!--end::Card title-->
                                 </div>
                                 <!--begin::Card header-->
-                               <!--begin::Body-->
-                               <div class="card-body pt-6 border-top">
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="fs-6 fw-semibold form-label mt-3">
-                                        <span>Nama</span>
-                                    </label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" name="nama" value="{{ old('nama', $siswa->nama) }}"
-                                        class="form-control @error('nama') is-invalid @enderror" required>
-                                    <!--end::Input-->
+                                <!--begin::Body-->
+                                <div class="card-body pt-6 border-top">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>Nama</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="nama" value="{{ old('nama', $siswa->nama) }}"
+                                                    class="form-control @error('nama') is-invalid @enderror" required>
+                                                <!--end::Input-->
 
-                                    @error('nama')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                                @error('nama')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
                                         </div>
-                                    @enderror
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>NIS</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="nis" value="{{ old('nis', $siswa->nis) }}"
+                                                    class="form-control @error('nis') is-invalid @enderror" required>
+                                                <!--end::Input-->
+
+                                                @error('nis')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>Tempat Lahir</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="tempat_lahir"
+                                                    value="{{ old('tempat_lahir', $siswa->tempat_lahir) }}"
+                                                    class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                                    required>
+                                                <!--end::Input-->
+
+                                                @error('tempat_lahir')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>Tanggal Lahir</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="date" name="tanggal_lahir"
+                                                    value="{{ old('tanggal_lahir', $siswa->tanggal_lahir?->format('Y-m-d')) }}"
+                                                    class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                                                    required>
+                                                <!--end::Input-->
+
+                                                @error('tanggal_lahir')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>Jenis Kelamin</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <select name="jenis_kelamin" id="jenis-kelamin"
+                                                    class="2select form-control @error('jenis_kelamin') is-invalid @enderror">
+                                                    <option value="">Pilih Jenis Kelamin</option>
+                                                    <option value="L"
+                                                        @if (old('jenis_kelamin', $siswa->jenis_kelamin) == 'L') selected @endif>Laki-laki</option>
+                                                    <option value="P"
+                                                        @if (old('jenis_kelamin', $siswa->jenis_kelamin) == 'P') selected @endif>Perempuan
+                                                    </option>
+                                                </select>
+                                                <!--end::Input-->
+
+                                                @error('nis')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>Agama</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <select name="agama" id="jenis-kelamin"
+                                                    class="2select form-control @error('agama') is-invalid @enderror">
+                                                    <option selected disabled>Pilih Agama</option>
+                                                    <option value="Islam"
+                                                        @if (old('agama', $siswa->agama) == 'Islam') selected @endif>Islam</option>
+                                                    <option value="Kristen"
+                                                        @if (old('agama', $siswa->agama) == 'Kristen') selected @endif>Kristen</option>
+                                                    <option value="Protestan"
+                                                        @if (old('agama', $siswa->agama) == 'Protestan') selected @endif>Protestan
+                                                    </option>
+                                                    <option value="Hindu"
+                                                        @if (old('agama', $siswa->agama) == 'Hindu') selected @endif>Hindu</option>
+                                                    <option value="Buddha"
+                                                        @if (old('agama', $siswa->agama) == 'Buddha') selected @endif>Buddha</option>
+                                                    <option value="Kong Hu Chu"
+                                                        @if (old('agama', $siswa->agama) == 'Kong Hu Chu') selected @endif>Kong Hu Chu
+                                                    </option>
+                                                    <option value="Lainnya"
+                                                        @if (old('agama', $siswa->agama) == 'Lainnya') selected @endif>Lainnya</option>
+                                                </select>
+                                                <!--end::Input-->
+
+                                                @error('agama')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                    </div>
+
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-semibold form-label mt-3">
+                                            <span>Alamat</span>
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat', $siswa->alamat) }}</textarea>
+                                        <!--end::Input-->
+
+                                        @error('alamat')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <!--end::Input group-->
                                 </div>
-                                <!--end::Input group-->
-
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>NIS</span>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="nis" value="{{ old('nis', $siswa->nis) }}"
-                                                class="form-control @error('nis') is-invalid @enderror" required>
-                                            <!--end::Input-->
-
-                                            @error('nis')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>NISN</span>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="nisn" value="{{ old('nisn', $siswa->nisn) }}"
-                                                class="form-control @error('nisn') is-invalid @enderror" required>
-                                            <!--end::Input-->
-
-                                            @error('nisn')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Tempat Lahir</span>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $siswa->tempat_lahir) }}"
-                                                class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                                required>
-                                            <!--end::Input-->
-
-                                            @error('tempat_lahir')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Tanggal Lahir</span>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="date" name="tanggal_lahir"
-                                                value="{{ old('tanggal_lahir', $siswa->tanggal_lahir?->format('Y-m-d')) }}"
-                                                class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                                required>
-                                            <!--end::Input-->
-
-                                            @error('tanggal_lahir')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Jenis Kelamin</span>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <select name="jenis_kelamin" id="jenis-kelamin"
-                                                class="2select form-control @error('jenis_kelamin') is-invalid @enderror">
-                                                <option value="">Pilih Jenis Kelamin</option>
-                                                <option value="L"
-                                                    @if (old('jenis_kelamin', $siswa->jenis_kelamin) == 'L') selected @endif>Laki-laki</option>
-                                                <option value="P"
-                                                    @if (old('jenis_kelamin', $siswa->jenis_kelamin) == 'P') selected @endif>Perempuan
-                                                </option>
-                                            </select>
-                                            <!--end::Input-->
-
-                                            @error('nis')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mt-3">
-                                                <span>Agama</span>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <select name="agama" id="jenis-kelamin"
-                                                class="2select form-control @error('agama') is-invalid @enderror">
-                                                <option selected disabled>Pilih Agama</option>
-                                                <option value="Islam"
-                                                    @if (old('agama', $siswa->agama) == 'Islam') selected @endif>Islam</option>
-                                                <option value="Kristen"
-                                                    @if (old('agama', $siswa->agama) == 'Kristen') selected @endif>Kristen</option>
-                                                <option value="Protestan"
-                                                    @if (old('agama', $siswa->agama) == 'Protestan') selected @endif>Protestan
-                                                </option>
-                                                <option value="Hindu"
-                                                    @if (old('agama', $siswa->agama) == 'Hindu') selected @endif>Hindu</option>
-                                                <option value="Buddha"
-                                                    @if (old('agama', $siswa->agama) == 'Buddha') selected @endif>Buddha</option>
-                                                <option value="Kong Hu Chu"
-                                                    @if (old('agama', $siswa->agama) == 'Kong Hu Chu') selected @endif>Kong Hu Chu
-                                                </option>
-                                                <option value="Lainnya"
-                                                    @if (old('agama', $siswa->agama) == 'Lainnya') selected @endif>Lainnya</option>
-                                            </select>
-                                            <!--end::Input-->
-
-                                            @error('agama')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                </div>
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="fs-6 fw-semibold form-label mt-3">
-                                        <span>Alamat</span>
-                                    </label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat', $siswa->alamat) }}</textarea>
-                                    <!--end::Input-->
-
-                                    @error('alamat')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            <!--end: Card Body-->
+                                <!--end: Card Body-->
                                 <!--begin::Footer-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     <button type="submit" class="btn btn-primary"

@@ -21,7 +21,6 @@ class SiswaFactory extends Factory
         return [
             'nama' => fake()->name(),
             'nis' => Str::limit(fake()->unique()->numberBetween(1000000000, 9999999999), 5, ''),
-            'nisn' => fake()->unique()->numberBetween(1000000000, 9999999999),
             'tempat_lahir' => fake()->city(),
             'tanggal_lahir' => fake()->date(),
             'jenis_kelamin' => fake()->randomElement(['L', 'P']),

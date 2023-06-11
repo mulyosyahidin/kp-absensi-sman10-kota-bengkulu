@@ -215,7 +215,7 @@
                                                     <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
                                                         <th>#</th>
                                                         <th>Nama</th>
-                                                        <th>NISN</th>
+                                                        <th>NIS</th>
                                                         <th>Absensi</th>
                                                     </tr>
                                                 </thead>
@@ -226,7 +226,7 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $item->siswa->nama }}</td>
-                                                            <td>{{ $item->siswa->nisn }}</td>
+                                                            <td>{{ $item->siswa->nis }}</td>
                                                             <td>{!! attendanceBadge($item->status) !!}</td>
                                                         </tr>
                                                     @empty

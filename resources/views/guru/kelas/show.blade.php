@@ -206,7 +206,7 @@
                                                 <th>#</th>
                                                 <th>Tahun Ajaran</th>
                                                 <th>Nama</th>
-                                                <th>NISN</th>
+                                                <th>NIS</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th></th>
                                             </tr>
@@ -221,7 +221,7 @@
                                                         ({{ $item->tahunAjaran->semester == 1 ? 'Ganjil' : 'Genap' }})
                                                     </td>
                                                     <td>{{ $item->siswa->nama }}</td>
-                                                    <td>{{ $item->siswa->nisn }}</td>
+                                                    <td>{{ $item->siswa->nis }}</td>
                                                     <td>{{ $item->siswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
                                                     </td>
                                                 </tr>

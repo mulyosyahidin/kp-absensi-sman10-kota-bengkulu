@@ -80,27 +80,28 @@
                                 <!--begin::Card header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-6 border-top">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold form-label mt-3">
-                                            <span>Nama</span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="nama" value="{{ old('nama') }}"
-                                            class="form-control @error('nama') is-invalid @enderror" required>
-                                        <!--end::Input-->
-
-                                        @error('nama')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <!--end::Input group-->
-
                                     <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span>Nama</span>
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="nama" value="{{ old('nama') }}"
+                                                    class="form-control @error('nama') is-invalid @enderror" required>
+                                                <!--end::Input-->
+
+                                                @error('nama')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
                                         <div class="col-12 col-md-6">
                                             <!--begin::Input group-->
                                             <div class="fv-row mb-7">
@@ -122,27 +123,6 @@
                                             </div>
                                             <!--end::Input group-->
                                         </div>
-                                        <div class="col-12 col-md-6">
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span>NISN</span>
-                                                </label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="text" name="nisn" value="{{ old('nisn') }}"
-                                                    class="form-control @error('nisn') is-invalid @enderror">
-                                                <!--end::Input-->
-
-                                                @error('nisn')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <!--end::Input group-->
-                                        </div>
                                     </div>
 
                                     <div class="row">
@@ -156,8 +136,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}"
-                                                    class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                                    >
+                                                    class="form-control @error('tempat_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('tempat_lahir')
@@ -179,8 +158,7 @@
                                                 <!--begin::Input-->
                                                 <input type="date" name="tanggal_lahir"
                                                     value="{{ old('tanggal_lahir') }}"
-                                                    class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                                    >
+                                                    class="form-control @error('tanggal_lahir') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('tanggal_lahir')

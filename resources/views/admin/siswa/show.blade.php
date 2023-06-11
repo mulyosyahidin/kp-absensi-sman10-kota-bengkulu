@@ -105,12 +105,6 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>NISN</td>
-                                            <td>
-                                                <strong>{{ $siswa->nisn }}</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
                                             <td>Agama</td>
                                             <td>
                                                 <strong>{{ $siswa->agama }}</strong>

@@ -233,7 +233,7 @@
                                                 <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
                                                     <th>#</th>
                                                     <th>Nama</th>
-                                                    <th>NISN</th>
+                                                    <th>NIS</th>
                                                     <th class="text-center">Kehadiran</th>
                                                 </tr>
                                             </thead>
@@ -244,7 +244,7 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $item->siswa->nama }}</td>
-                                                        <td>{{ $item->siswa->nisn }}</td>
+                                                        <td>{{ $item->siswa->nis }}</td>
                                                         <td>
                                                             <div class="attendance-status text-end">
                                                                 <input class="checkbox-tools status-success" type="radio"
