@@ -145,10 +145,21 @@
                 [10, 25, 50, 100, 500, 1000, -1],
                 ['10', '25', '50', '100', '500', '1.000', 'Show all']
             ],
+            pageLength: -1
         });
 
-        $('div.submit-button').html(`
-                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Tambahkan Siswa ke Kelas</button>
+        $('div.submit-button').html(`<input class="form-check-input check-all" type="checkbox">
+                <button type="submit" class="ml-3 btn btn-primary btn-sm"><i class="fa fa-save"></i> Tambahkan Siswa ke Kelas</button>
             `);
+    </script>
+
+    <script>
+        $(document).on('click', '.check-all', function () {
+            if ($(this).is(':checked')) {
+                $('input[type="checkbox"]').prop('checked', true);
+            } else {
+                $('input[type="checkbox"]').prop('checked', false);
+            }
+        })
     </script>
 @endpush
