@@ -104,10 +104,30 @@ class PelajaranController extends Controller
      */
     public function guru(Pelajaran $pelajaran)
     {
+        $pelajaran->load('guru.kelas', 'guru.guruKelas');
+
         $guru = Guru::all();
         $kelas = Kelas::where('tingkat', $pelajaran->tingkat)->get();
 
-        return view('admin.pelajaran.guru', compact('pelajaran', 'guru', 'kelas'));
+        $dataGuruPengampu = [];
+        $kelasSudahDiampu = [];
+
+        foreach ($pelajaran->guru as $guruPelajaran) {
+            $dataGuruPengampu[] = [
+                'id_guru' => $guruPelajaran->id_guru,
+                'kelas' => $guruPelajaran->guruKelas->map(function ($item) {
+                    return $item->id_kelas;
+                })->toArray(),
+            ];
+
+            $kelasSudahDiampu = array_merge($kelasSudahDiampu, $guruPelajaran->guruKelas->map(function ($item) {
+                return $item->id_kelas;
+            })->toArray());
+        }
+
+        $dataGuruPengampu = collect($dataGuruPengampu);
+        
+        return view('admin.pelajaran.guru', compact('pelajaran', 'guru', 'kelas', 'dataGuruPengampu', 'kelasSudahDiampu'));
     }
 
     /**
@@ -154,5 +174,14 @@ class PelajaranController extends Controller
         return redirect()
             ->route('admin.pelajaran.index')
             ->withSuccess('Data pelajaran berhasil diimport.');
+    }
+
+    public function hapusGuru(Pelajaran $pelajaran, Guru $guru)
+    {
+        $pelajaran->guru()->where('id_guru', $guru->id)->delete();
+
+        return redirect()
+            ->route('admin.pelajaran.show', $pelajaran)
+            ->withSuccess('Berhasil menghapus guru pelajaran');
     }
 }

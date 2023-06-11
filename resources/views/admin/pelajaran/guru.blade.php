@@ -107,9 +107,11 @@
                                                     class="form-control 2select @error('id_guru') is-invalid @enderror">
                                                     <option selected disabled>Pilih Guru</option>
                                                     @foreach ($guru as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            @if (old('id_guru') == $item->id) selected @endif>
-                                                            {{ $item->nama }}</option>
+                                                        @if (!$pelajaran->guru->contains('id_guru', $item->id))
+                                                            <option value="{{ $item->id }}"
+                                                                @if (old('id_guru') == $item->id) selected @endif>
+                                                                {{ $item->nama }}</option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                                 <!--end::Input-->
@@ -136,7 +138,10 @@
                                                     multiple>
                                                     <option selected disabled>Pilih Kelas</option>
                                                     @foreach ($kelas as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                        @if (!in_array($item->id, $kelasSudahDiampu))
+                                                            <option value="{{ $item->id }}">{{ $item->nama }}
+                                                            </option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                                 <!--end::Input-->

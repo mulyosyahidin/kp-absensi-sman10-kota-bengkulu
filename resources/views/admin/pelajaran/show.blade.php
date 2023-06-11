@@ -167,6 +167,12 @@
                                                                 class="badge badge-secondary">{{ $guruKelas->kelas->nama }}</span>
                                                         @endforeach
                                                     </td>
+                                                    <td class="text-end">
+                                                        <a href="#"
+                                                            data-submit-to="{{ route('admin.pelajaran.guru.hapus-guru', ['pelajaran' => $pelajaran, 'guru' => $item->first()->guru->id]) }}"
+                                                            class="btn btn-danger btn-sm hapus-guru"><i
+                                                                class="fa fa-trash"></i></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -178,7 +184,6 @@
                             <!--end: Card Body-->
                         </div>
                         <!--end::Tables widget 14-->
-
                     </div>
                     <!--end::Col-->
                 </div>
@@ -195,6 +200,11 @@
     <form action="{{ route('admin.pelajaran.destroy', $pelajaran) }}" method="post" id="delete-form">
         @csrf
         @method('DELETE')
+    </form>
+
+    <form action="#" method="post" id="hapus-guru-form">
+        @method('DELETE')
+        @csrf
     </form>
 @endsection
 
@@ -219,6 +229,32 @@
 
                     deleteForm.submit();
                 }
+            })
+        });
+    </script>
+
+    <script>
+        let hapusGuruBtns = document.querySelectorAll('.hapus-guru');
+        let hapusGuruForm = document.querySelector('#hapus-guru-form');
+
+        hapusGuruBtns.forEach((btn) => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                let submitTo = btn.getAttribute('data-submit-to');
+
+                Swal.fire({
+                    title: 'Hapus Guru Pelajaran?',
+                    text: "Yakin ingin menghapus guru pelajaran? Tindakan ini tidak dapat dibatalkan.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                    hapusGuruForm.setAttribute('action', submitTo);
+                    hapusGuruForm.submit();
+                })
             })
         });
     </script>

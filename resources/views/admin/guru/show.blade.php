@@ -215,12 +215,18 @@
                         <!--begin::Tables widget 14-->
                         <div class="card card-flush mt-5">
                             <!--begin::Header-->
-                            <div class="card-header pt-7">
+                            <div class="card-header pt-7 d-flex justify-content-between">
                                 <!--begin::Title-->
                                 <h3 class="card-title align-items-start flex-column">
                                     <span class="card-label fw-bold text-gray-800">Pelajaran</span>
                                 </h3>
                                 <!--end::Title-->
+
+                                <a href="{{ route('admin.guru.pelajaran.select', $guru) }}" style="height: 35px;"
+                                    class="btn btn-sm btn-info">
+                                    <i class="fa fa-user"></i>
+                                    Tambah
+                                </a>
                             </div>
                             <!--end::Header-->
                             <!--begin::Body-->
