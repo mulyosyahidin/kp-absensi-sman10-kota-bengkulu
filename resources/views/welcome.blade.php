@@ -1,23 +1,11 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic
-Product Version: 8.1.8
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
 <html lang="en">
 <!--begin::Head-->
 
 <head>
     <base href="" />
 
-    <title>Sistem Informasi Absensi SMA N 10 Kota Bengkulu</title>
+    <title>Sistem Informasi Absensi SMAN 10 Kota Bengkulu</title>
 
     <link href="{{ asset('assets/images/icon.png') }}" rel="shortcut icon">
     <link href="{{ asset('assets/images/icon.png') }}" rel="icon">
@@ -68,7 +56,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="mb-0" id="home">
             <!--begin::Wrapper-->
             <div class="bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-bottom landing-dark-bg"
-                style="background-image: url({{ asset('assets/themes/metronic/media/svg/illustrations/landing.svg') }})">
+                style="background-color: red; background-image: url({{ asset('assets/images/home-bg.jpeg') }}); background-size: cover;">
                 <!--begin::Header-->
                 <div class="landing-header" data-kt-sticky="true" data-kt-sticky-name="landing-header"
                     data-kt-sticky-offset="{default: '200px', lg: '300px'}">
@@ -78,9 +66,9 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="d-flex align-items-center justify-content-center">
                             <!--begin::Logo image-->
                             <a href="{{ route('home') }}">
-                                <img alt="Logo" src="{{ asset('assets/themes/metronic/media/logos/landing.svg') }}"
-                                    class="logo-default h-25px h-lg-30px" />
-                                <img alt="Logo" src="{{ asset('assets/themes/metronic/media/logos/landing-dark.svg') }}"
+                                <img alt="Logo" src="{{ asset('assets/images/logo.png') }}"
+                                    class="logo-default h-30px h-lg-30px" />
+                                <img alt="Logo" src="{{ asset('assets/images/logo.png') }}"
                                     class="logo-sticky h-20px h-lg-25px" />
                             </a>
                             <!--end::Logo image-->
@@ -96,7 +84,8 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
                         <!--begin::Title-->
                         <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-15">
-                            Sistem Informasi Absensi SMA N 10 Kota Bengkulu
+                            Sistem Informasi Absensi Siswa
+                            <br />SMAN 10 Kota Bengkulu
                         </h1>
                         <!--end::Title-->
                         <!--begin::Action-->

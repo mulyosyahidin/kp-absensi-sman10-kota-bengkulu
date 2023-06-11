@@ -36,8 +36,8 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'nis' => 'nullable|numeric|unique:siswa,nis',
-            'nisn' => 'nullable|numeric|unique:siswa,nisn',
+            'nis' => 'nullable|unique:siswa,nis|max:4',
+            'nisn' => 'nullable|unique:siswa,nisn|max:9',
             'tempat_lahir' => 'nullable',
             'tanggal_lahir' => 'nullable|date',
             'jenis_kelamin' => 'nullable|in:L,P',

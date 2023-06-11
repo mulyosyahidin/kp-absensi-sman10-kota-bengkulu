@@ -46,7 +46,7 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
-                    <a href="{{ route('admin.jurusan.index') }}" class="btn btn-sm fw-bold btn-primary">
+                    <a href="{{ route('admin.guru.index') }}" class="btn btn-sm fw-bold btn-primary">
                         Kembali
                     </a>
                     <!--end::Primary button-->
@@ -342,7 +342,7 @@
                                         </label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat', $guru->alamat) }}</textarea>
+                                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat') }}</textarea>
                                         <!--end::Input-->
 
                                         @error('alamat')

@@ -111,7 +111,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="nis" value="{{ old('nis') }}"
-                                                    class="form-control @error('nis') is-invalid @enderror" required>
+                                                    class="form-control @error('nis') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('nis')
@@ -132,7 +132,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="nisn" value="{{ old('nisn') }}"
-                                                    class="form-control @error('nisn') is-invalid @enderror" required>
+                                                    class="form-control @error('nisn') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('nisn')
@@ -157,7 +157,7 @@
                                                 <!--begin::Input-->
                                                 <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}"
                                                     class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                                    required>
+                                                    >
                                                 <!--end::Input-->
 
                                                 @error('tempat_lahir')
@@ -180,7 +180,7 @@
                                                 <input type="date" name="tanggal_lahir"
                                                     value="{{ old('tanggal_lahir') }}"
                                                     class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                                    required>
+                                                    >
                                                 <!--end::Input-->
 
                                                 @error('tanggal_lahir')

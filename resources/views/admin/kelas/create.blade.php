@@ -113,7 +113,7 @@
                                             <div class="fv-row mb-7">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span>Nama</span>
+                                                    <span>Kelas</span>
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->

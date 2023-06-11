@@ -145,7 +145,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="nuptk" value="{{ old('nuptk', $guru->nuptk) }}"
-                                                    class="form-control @error('nuptk') is-invalid @enderror" required>
+                                                    class="form-control @error('nuptk') is-invalid @enderror">
                                                 <!--end::Input-->
 
                                                 @error('nuptk')
